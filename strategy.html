@@ -255,8 +255,8 @@ h4 { font-family: var(--font-subheadline); font-size: var(--text-lg); font-weigh
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 72px;
-  gap: var(--space-6);
+  height: 84px;
+  gap: var(--space-8);
 }
 .brand-mark {
   display: inline-flex;
@@ -266,14 +266,14 @@ h4 { font-family: var(--font-subheadline); font-size: var(--text-lg); font-weigh
   color: var(--color-charcoal-navy);
 }
 .brand-mark .logo-svg {
-  height: 36px;
+  height: 46px;
   width: auto;
   display: block;
   flex-shrink: 0;
 }
 .brand-mark .logo-svg .wordmark path { fill: var(--color-powerful-navy); }
 @media (max-width: 560px) {
-  .brand-mark .logo-svg { height: 30px; }
+  .brand-mark .logo-svg { height: 38px; }
 }
 .brand-mark .microsite-label {
   font-family: var(--font-subheadline);
@@ -307,6 +307,7 @@ h4 { font-family: var(--font-subheadline); font-size: var(--text-lg); font-weigh
   text-decoration: none;
   padding: var(--space-2) 0;
   position: relative;
+  white-space: nowrap;
   transition: color var(--transition-fast);
 }
 .nav-item:hover { color: var(--color-splash-blue); }
@@ -375,7 +376,7 @@ h4 { font-family: var(--font-subheadline); font-size: var(--text-lg); font-weigh
 }
 .mobile-menu .btn { width: 100%; }
 
-@media (max-width: 960px) {
+@media (max-width: 1040px) {
   .primary-nav .nav-list { display: none; }
   .header-cta-desktop { display: none; }
   .menu-toggle { display: block; }
@@ -385,12 +386,19 @@ h4 { font-family: var(--font-subheadline); font-size: var(--text-lg); font-weigh
    PART 5 — HERO (Strategy page variant — Dark, simpler)
    ============================================================ */
 .hero {
-  background: var(--gradient-v1);
+  background:
+    linear-gradient(135deg, rgba(3,42,63,0.93) 0%, rgba(18,90,130,0.82) 55%, rgba(3,42,63,0.9) 100%),
+    url('assets/hero-bg-strategy.jpg') center / cover no-repeat;
   color: var(--fg-inverted);
-  padding: var(--space-20) 0;
+  padding: var(--space-10) 0;
+  aspect-ratio: 16 / 9;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
   position: relative;
   overflow: hidden;
 }
+.hero > .hero-inner { width: 100%; }
 .hero::before {
   content: '';
   position: absolute;
@@ -412,18 +420,18 @@ h4 { font-family: var(--font-subheadline); font-size: var(--text-lg); font-weigh
 .hero-content { max-width: 620px; }
 .hero h1 {
   font-family: var(--font-headline);
-  font-size: var(--text-5xl);
+  font-size: var(--text-4xl);
   line-height: var(--leading-tight);
   color: var(--fg-inverted);
-  margin-bottom: var(--space-6);
+  margin-bottom: var(--space-4);
   letter-spacing: -0.01em;
 }
 .hero .subhead {
   font-family: var(--font-body);
-  font-size: var(--text-md);
+  font-size: var(--text-base);
   color: rgba(255,255,255,0.88);
   line-height: var(--leading-relaxed);
-  margin-bottom: var(--space-8);
+  margin-bottom: var(--space-5);
 }
 .hero .cta-row { margin-bottom: var(--space-8); }
 .hero .trust-cue {
@@ -468,6 +476,24 @@ h4 { font-family: var(--font-subheadline); font-size: var(--text-lg); font-weigh
   padding: var(--space-8);
   border: 1px solid var(--border-color-dark);
 }
+.consultation-frame.has-img { justify-content: space-between; }
+.consultation-frame .cf-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+.consultation-frame.has-img::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(3,42,63,0.7) 0%, rgba(3,42,63,0.12) 38%, rgba(3,42,63,0.35) 68%, rgba(3,42,63,0.88) 100%);
+  z-index: 1;
+}
+.consultation-frame .cf-content,
+.consultation-frame .cf-bottom { position: relative; z-index: 2; }
 .consultation-frame::before {
   content: '';
   position: absolute;
@@ -568,7 +594,7 @@ h4 { font-family: var(--font-subheadline); font-size: var(--text-lg); font-weigh
 }
 
 @media (max-width: 960px) {
-  .hero { padding: var(--space-12) 0; }
+  .hero { padding: var(--space-12) 0; min-height: auto; aspect-ratio: auto; display: block; }
   .hero h1 { font-size: var(--text-3xl); }
   .hero-inner { grid-template-columns: 1fr; gap: var(--space-10); }
   .hero-visual { aspect-ratio: 4 / 3; max-width: 560px; margin: 0 auto; width: 100%; }
@@ -776,6 +802,172 @@ section[data-section] { padding: var(--space-16) 0; }
    PART 9 — STACKED CARD (What We Clarify)
    ============================================================ */
 .clarify-section { background: var(--bg-subtle); }
+/* Interactive Strategy Blueprint stepper */
+.blueprint { max-width: 1000px; margin: 0 auto; }
+.bp-rail {
+  list-style: none;
+  margin: 0 0 var(--space-6);
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: var(--space-2);
+}
+.bp-step {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  padding: var(--space-3) var(--space-3) var(--space-3);
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-top: 3px solid var(--border-color);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  text-align: left;
+  transition: border-color var(--transition-base), box-shadow var(--transition-base), background var(--transition-base);
+}
+.bp-step:hover { border-color: var(--color-splash-blue); }
+.bp-step:focus-visible { outline: 2px solid var(--color-splash-blue); outline-offset: 2px; }
+.bp-step.is-active {
+  border-top-color: var(--color-splash-blue);
+  box-shadow: var(--shadow-md);
+}
+.bp-step.is-done .bp-step-num { color: var(--color-splash-blue); }
+.bp-step-num {
+  font-family: var(--font-headline);
+  font-size: var(--text-md);
+  color: var(--color-powerful-gray);
+  line-height: 1;
+}
+.bp-step.is-active .bp-step-num { color: var(--color-splash-blue); }
+.bp-step-label {
+  font-family: var(--font-subheadline);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  color: var(--fg-primary);
+  line-height: var(--leading-snug);
+}
+.bp-stage {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: var(--space-8);
+  min-height: 320px;
+}
+.bp-panel[hidden] { display: none; }
+.bp-panel {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: var(--space-8);
+  animation: bpFade 0.35s ease;
+}
+@keyframes bpFade { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+.bp-panel-num {
+  font-family: var(--font-headline);
+  font-size: var(--text-2xl);
+  color: var(--color-splash-blue);
+  line-height: 1;
+}
+.bp-panel-title {
+  font-family: var(--font-headline);
+  font-size: var(--text-2xl);
+  color: var(--color-charcoal-navy);
+  margin: var(--space-2) 0 var(--space-3);
+  line-height: var(--leading-tight);
+}
+.bp-panel-lead {
+  font-size: var(--text-md);
+  color: var(--fg-secondary);
+  line-height: var(--leading-relaxed);
+  margin-bottom: var(--space-5);
+}
+.bp-output {
+  background: var(--bg-subtle);
+  border-left: 3px solid var(--color-splash-blue);
+  border-radius: var(--radius-sm);
+  padding: var(--space-4) var(--space-5);
+}
+.bp-output-lbl {
+  display: block;
+  font-family: var(--font-subheadline);
+  font-size: 10px;
+  font-weight: var(--weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-splash-blue);
+  margin-bottom: 4px;
+}
+.bp-output p { margin: 0; font-weight: var(--weight-semibold); color: var(--color-charcoal-navy); font-size: var(--text-sm); }
+.bp-q {
+  border-left: 1px solid var(--border-color);
+  padding-left: var(--space-8);
+}
+.bp-q-lbl {
+  display: block;
+  font-family: var(--font-subheadline);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-powerful-gray);
+  margin-bottom: var(--space-4);
+}
+.bp-q ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--space-3); }
+.bp-q li {
+  position: relative;
+  padding-left: var(--space-6);
+  font-size: var(--text-base);
+  color: var(--fg-primary);
+  line-height: var(--leading-snug);
+}
+.bp-q li::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 5px;
+  width: 14px; height: 14px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2300b0e0' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 12h15'/%3E%3Cpath d='M13 6l6 6-6 6'/%3E%3C/svg%3E") no-repeat center / contain;
+}
+.bp-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-top: var(--space-6);
+}
+.bp-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-5);
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-full);
+  font-family: var(--font-subheadline);
+  font-weight: var(--weight-semibold);
+  font-size: var(--text-sm);
+  color: var(--color-charcoal-navy);
+  cursor: pointer;
+  transition: border-color var(--transition-base), color var(--transition-base);
+}
+.bp-arrow svg { width: 16px; height: 16px; }
+.bp-arrow:hover:not(:disabled) { border-color: var(--color-splash-blue); color: var(--color-splash-blue); }
+.bp-arrow:disabled { opacity: 0.4; cursor: default; }
+.bp-progress {
+  font-family: var(--font-subheadline);
+  font-weight: var(--weight-semibold);
+  font-size: var(--text-sm);
+  color: var(--fg-secondary);
+}
+.bp-progress #bpProgress { color: var(--color-splash-blue); font-size: var(--text-md); }
+.bp-progress-sep { color: var(--border-color-strong, var(--color-powerful-gray)); }
+@media (max-width: 760px) {
+  .bp-rail { grid-template-columns: repeat(3, 1fr); }
+  .bp-panel { grid-template-columns: 1fr; gap: var(--space-5); }
+  .bp-q { border-left: 0; padding-left: 0; border-top: 1px solid var(--border-color); padding-top: var(--space-5); }
+  .bp-stage { padding: var(--space-5); min-height: 0; }
+}
 .stacked-cards { display: flex; flex-direction: column; max-width: 960px; margin: 0 auto; }
 .stacked-card {
   display: grid;
@@ -1280,24 +1472,15 @@ section[data-section] { padding: var(--space-16) 0; }
    PART 14 — FINAL CTA (cta-standard-01, Dark variant)
    ============================================================ */
 .final-cta {
-  background: var(--gradient-v2);
+  background:
+    linear-gradient(135deg, rgba(8,53,83,0.92) 0%, rgba(0,138,170,0.85) 100%),
+    url('assets/cta-bg-strategy.jpg') center / cover no-repeat;
   color: var(--fg-inverted);
   text-align: center;
   position: relative;
   overflow: hidden;
 }
-.final-cta::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(135deg, transparent 70%, rgba(255,255,255,0.04) 70%, rgba(255,255,255,0.04) 71%, transparent 71%),
-    linear-gradient(225deg, transparent 70%, rgba(51,217,255,0.05) 70%, rgba(51,217,255,0.05) 71%, transparent 71%),
-    linear-gradient(to right, rgba(255,255,255,0.025) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255,255,255,0.025) 1px, transparent 1px);
-  background-size: auto, auto, 48px 48px, 48px 48px;
-  pointer-events: none;
-}
+.final-cta::before { content: none; }
 .final-cta .container {
   max-width: 760px;
   position: relative;
@@ -1429,6 +1612,13 @@ section[data-section] { padding: var(--space-16) 0; }
 @media print {
   .site-header, .site-footer, .mobile-menu, .sticky-mobile-cta { display: none; }
 }
+
+/* Footer enhancements (rolled out from homepage) */
+.footer-brand .footer-cta:hover { color: var(--color-white); }
+.footer-actions { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-4); }
+.footer-col h4 a { color: var(--color-white); font: inherit; text-decoration: none; }
+.footer-col h4 a:hover { color: var(--color-vivid-sky-blue); }
+.footer-col h4.footer-col-next { margin-top: var(--space-5); }
 </style>
 </head>
 <body>
@@ -1474,13 +1664,13 @@ section[data-section] { padding: var(--space-16) 0; }
     <nav class="primary-nav" aria-label="Primary">
       <ul class="nav-list">
         <li><a class="nav-item active" href="strategy.html" aria-current="page">Strategy</a></li>
-        <li><a class="nav-item" href="digital-marketing.html">Digital Marketing</a></li>
         <li><a class="nav-item" href="websites.html">Websites</a></li>
         <li><a class="nav-item" href="video.html">Video</a></li>
+        <li><a class="nav-item" href="digital-marketing.html">Digital Marketing</a></li>
         <li><a class="nav-item" href="results.html">Results</a></li>
         <li><a class="nav-item" href="resources.html#scorecard-download">Resources</a></li>
       </ul>
-      <a href="schedule-strategy-call.html" class="btn btn-cta header-cta-desktop">Schedule A Roofing Strategy Call</a>
+      <a href="schedule-strategy-call.html" class="btn btn-cta header-cta-desktop">Schedule A Strategy Call</a>
     </nav>
 
     <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
@@ -1493,13 +1683,13 @@ section[data-section] { padding: var(--space-16) 0; }
   <div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Mobile navigation" aria-modal="true" hidden>
     <ul class="nav-list">
       <li><a class="nav-item active" href="strategy.html" aria-current="page">Strategy</a></li>
-      <li><a class="nav-item" href="digital-marketing.html">Digital Marketing</a></li>
       <li><a class="nav-item" href="websites.html">Websites</a></li>
       <li><a class="nav-item" href="video.html">Video</a></li>
+      <li><a class="nav-item" href="digital-marketing.html">Digital Marketing</a></li>
       <li><a class="nav-item" href="results.html">Results</a></li>
       <li><a class="nav-item" href="resources.html#scorecard-download">Resources</a></li>
     </ul>
-    <a href="schedule-strategy-call.html" class="btn btn-cta">Schedule A Roofing Strategy Call</a>
+    <a href="schedule-strategy-call.html" class="btn btn-cta">Schedule A Strategy Call</a>
   </div>
 </header>
 
@@ -1525,22 +1715,17 @@ section[data-section] { padding: var(--space-16) 0; }
            Production swaps the inner placeholder with a real image or muted video.
            {NEEDS: strategy consultation image or video with Splash strategist and roofing business owner} -->
       <div class="hero-visual">
-        <figure class="consultation-frame" role="img"
-                aria-label="Splash strategist working through a marketing plan with a roofing business owner — production replaces this placeholder with a licensed image or muted video.">
-          <!-- {NEEDS: strategy consultation image or video with Splash strategist and roofing business owner} -->
+        <figure class="consultation-frame has-img">
+          <img class="cf-img" src="assets/AdobeStock_1974978486-web.jpg" alt="A Splash strategist working through a growth plan with a roofing company's leadership team">
           <div class="cf-content">
             <span class="cf-tag">Strategy Session</span>
             <span class="cf-headline">Working through a growth plan with a roofing leadership team — before recommending any tactic.</span>
-            <span class="cf-meta">{NEEDS: strategy consultation image or video}</span>
           </div>
           <div class="cf-bottom">
             <div class="cf-stat">
               <span class="cf-stat-num">01</span>
               <span class="cf-stat-lbl">Step One: Clarify</span>
             </div>
-            <span class="cf-play-cue" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><polygon points="8 5 19 12 8 19 8 5"/></svg>
-            </span>
           </div>
         </figure>
       </div>
@@ -1556,7 +1741,7 @@ section[data-section] { padding: var(--space-16) 0; }
       <div class="section-header reveal">
         <span class="eyebrow">Where Marketing Breaks Down</span>
         <h2 id="problem-heading">Marketing Gets Expensive When The Pieces Are Disconnected</h2>
-        <p class="intro">Roofing companies often add tactics one at a time — SEO here, ads there, a refreshed website, a video, more leads. The cost compounds when those pieces aren't connected to a clear strategy.</p>
+        <p class="intro">Most roofing companies don't have a tactics problem — they have a connection problem. Tactics get added one at a time, each on its own, until the spend climbs faster than the results. Every breakdown below looks like a tactic issue on the surface and is a strategy gap underneath:</p>
       </div>
 
       <div class="grid-5card reveal">
@@ -1635,52 +1820,140 @@ section[data-section] { padding: var(--space-16) 0; }
       <div class="section-header reveal">
         <span class="eyebrow">What We Look At</span>
         <h2 id="clarify-heading">What We Clarify Before Recommending Tactics</h2>
-        <p class="intro">Strategy is not a survey or a kickoff slide. It's a deliberate look at six areas that decide whether marketing will land.</p>
+        <p class="intro">Strategy is not a survey or a kickoff slide. It's a deliberate look at six areas that decide whether marketing will land. Step through what we actually work through with your leadership team.</p>
       </div>
 
-      <div class="stacked-cards reveal">
-        <article class="stacked-card">
-          <div class="number">01</div>
-          <div>
-            <h3>Business Goals</h3>
-            <p>Where you actually want the roofing company to grow next — revenue, geography, service mix, team. The marketing plan answers to this, not the other way around.</p>
+      <div class="blueprint reveal" id="blueprint">
+        <ol class="bp-rail" role="tablist" aria-label="Strategy dimensions">
+          <li><button class="bp-step is-active" type="button" role="tab" aria-selected="true" id="bp-tab-0" aria-controls="bp-panel-0" data-bp="0"><span class="bp-step-num">01</span><span class="bp-step-label">Business Goals</span></button></li>
+          <li><button class="bp-step" type="button" role="tab" aria-selected="false" id="bp-tab-1" aria-controls="bp-panel-1" data-bp="1"><span class="bp-step-num">02</span><span class="bp-step-label">Audience &amp; Service Mix</span></button></li>
+          <li><button class="bp-step" type="button" role="tab" aria-selected="false" id="bp-tab-2" aria-controls="bp-panel-2" data-bp="2"><span class="bp-step-num">03</span><span class="bp-step-label">Market Positioning</span></button></li>
+          <li><button class="bp-step" type="button" role="tab" aria-selected="false" id="bp-tab-3" aria-controls="bp-panel-3" data-bp="3"><span class="bp-step-num">04</span><span class="bp-step-label">Website &amp; Conversion</span></button></li>
+          <li><button class="bp-step" type="button" role="tab" aria-selected="false" id="bp-tab-4" aria-controls="bp-panel-4" data-bp="4"><span class="bp-step-num">05</span><span class="bp-step-label">Visibility &amp; Leads</span></button></li>
+          <li><button class="bp-step" type="button" role="tab" aria-selected="false" id="bp-tab-5" aria-controls="bp-panel-5" data-bp="5"><span class="bp-step-num">06</span><span class="bp-step-label">Follow-Up &amp; Measurement</span></button></li>
+        </ol>
+
+        <div class="bp-stage">
+          <div class="bp-panel is-active" role="tabpanel" id="bp-panel-0" aria-labelledby="bp-tab-0">
+            <div class="bp-main">
+              <span class="bp-panel-num">01</span>
+              <h3 class="bp-panel-title">Business Goals</h3>
+              <p class="bp-panel-lead">Where you actually want the roofing company to go next — so every marketing decision answers to a real target instead of a hunch.</p>
+              <div class="bp-output"><span class="bp-output-lbl">What you walk away with</span><p>A clear growth target the entire marketing plan is built to serve.</p></div>
+            </div>
+            <div class="bp-q">
+              <span class="bp-q-lbl">Questions we work through</span>
+              <ul>
+                <li>Where should growth come from over the next 12–24 months — revenue, crews, geography, or service lines?</li>
+                <li>Which jobs are most profitable, and do you want more of them?</li>
+                <li>What budget and timeline are we realistically working within?</li>
+                <li>What does "winning" look like to leadership, not just to marketing?</li>
+              </ul>
+            </div>
           </div>
-        </article>
-        <article class="stacked-card">
-          <div class="number">02</div>
-          <div>
-            <h3>Audience &amp; Service Mix</h3>
-            <p>Who you want to serve more of, who you'd rather serve less of, and whether residential, commercial, repair, replacement, or storm work should get priority.</p>
+
+          <div class="bp-panel" role="tabpanel" id="bp-panel-1" aria-labelledby="bp-tab-1" hidden>
+            <div class="bp-main">
+              <span class="bp-panel-num">02</span>
+              <h3 class="bp-panel-title">Audience &amp; Service Mix</h3>
+              <p class="bp-panel-lead">Who you want more of — and who you'd rather stop attracting — before a dollar goes toward reaching them.</p>
+              <div class="bp-output"><span class="bp-output-lbl">What you walk away with</span><p>A prioritized audience and service focus marketing can actually target.</p></div>
+            </div>
+            <div class="bp-q">
+              <span class="bp-q-lbl">Questions we work through</span>
+              <ul>
+                <li>Residential, commercial, or both — and where is the margin?</li>
+                <li>Repair, replacement, re-roof, or storm — which work should lead?</li>
+                <li>Which neighborhoods, property types, or accounts matter most?</li>
+                <li>Who are the wrong-fit leads quietly draining your team's time?</li>
+              </ul>
+            </div>
           </div>
-        </article>
-        <article class="stacked-card">
-          <div class="number">03</div>
-          <div>
-            <h3>Market Positioning</h3>
-            <p>What makes your roofing company genuinely different in your service area, and whether that difference is showing up in the website, ads, sales conversations, and content.</p>
+
+          <div class="bp-panel" role="tabpanel" id="bp-panel-2" aria-labelledby="bp-tab-2" hidden>
+            <div class="bp-main">
+              <span class="bp-panel-num">03</span>
+              <h3 class="bp-panel-title">Market Positioning</h3>
+              <p class="bp-panel-lead">What genuinely sets you apart in your service area — and whether that difference is actually showing up.</p>
+              <div class="bp-output"><span class="bp-output-lbl">What you walk away with</span><p>A clear, defensible position that carries across every channel.</p></div>
+            </div>
+            <div class="bp-q">
+              <span class="bp-q-lbl">Questions we work through</span>
+              <ul>
+                <li>Why do your best customers choose you over the company down the road?</li>
+                <li>Is that difference visible on the site, in ads, and in sales calls?</li>
+                <li>How do your top local competitors position themselves?</li>
+                <li>What proof backs up the claims you're making?</li>
+              </ul>
+            </div>
           </div>
-        </article>
-        <article class="stacked-card">
-          <div class="number">04</div>
-          <div>
-            <h3>Website &amp; Conversion Path</h3>
-            <p>Whether the site reflects who you've become, supports search visibility, and gives prospects the trust signals and clear next steps that lead to a real conversation.</p>
+
+          <div class="bp-panel" role="tabpanel" id="bp-panel-3" aria-labelledby="bp-tab-3" hidden>
+            <div class="bp-main">
+              <span class="bp-panel-num">04</span>
+              <h3 class="bp-panel-title">Website &amp; Conversion Path</h3>
+              <p class="bp-panel-lead">Whether your site turns interest into real conversations — or quietly loses people before they call.</p>
+              <div class="bp-output"><span class="bp-output-lbl">What you walk away with</span><p>A conversion-focused website plan tied to how roofing buyers actually decide.</p></div>
+            </div>
+            <div class="bp-q">
+              <span class="bp-q-lbl">Questions we work through</span>
+              <ul>
+                <li>Does the site reflect the company you've become?</li>
+                <li>Can different buyers — homeowner vs. property manager — find their path quickly?</li>
+                <li>Are the trust signals (reviews, work, credentials) doing their job?</li>
+                <li>Where are visitors dropping off before they ever reach out?</li>
+              </ul>
+            </div>
           </div>
-        </article>
-        <article class="stacked-card">
-          <div class="number">05</div>
-          <div>
-            <h3>Visibility &amp; Lead Generation</h3>
-            <p>Which channels — SEO, LSAs, Google Ads, email, social, video — actually deserve investment given your goals, market, and the work you want more of.</p>
+
+          <div class="bp-panel" role="tabpanel" id="bp-panel-4" aria-labelledby="bp-tab-4" hidden>
+            <div class="bp-main">
+              <span class="bp-panel-num">05</span>
+              <h3 class="bp-panel-title">Visibility &amp; Lead Generation</h3>
+              <p class="bp-panel-lead">Which channels deserve your budget — and which are just noise — given your goals and market.</p>
+              <div class="bp-output"><span class="bp-output-lbl">What you walk away with</span><p>A channel plan and budget priority matched to your goals and market.</p></div>
+            </div>
+            <div class="bp-q">
+              <span class="bp-q-lbl">Questions we work through</span>
+              <ul>
+                <li>Where do your best leads come from today, and why?</li>
+                <li>Should SEO, LSAs, Google Ads, email, social, or video lead the mix?</li>
+                <li>What's the right balance of fast leads vs. long-term visibility?</li>
+                <li>Are you paying for activity that isn't producing the right calls?</li>
+              </ul>
+            </div>
           </div>
-        </article>
-        <article class="stacked-card">
-          <div class="number">06</div>
-          <div>
-            <h3>Follow-Up &amp; Measurement</h3>
-            <p>The sales handoff, response time, tracking, and reporting that decide whether marketing activity becomes booked roofing work.</p>
+
+          <div class="bp-panel" role="tabpanel" id="bp-panel-5" aria-labelledby="bp-tab-5" hidden>
+            <div class="bp-main">
+              <span class="bp-panel-num">06</span>
+              <h3 class="bp-panel-title">Follow-Up &amp; Measurement</h3>
+              <p class="bp-panel-lead">Whether marketing activity actually becomes booked roofing work — and whether you can see it.</p>
+              <div class="bp-output"><span class="bp-output-lbl">What you walk away with</span><p>A follow-up and reporting setup that connects spend to revenue.</p></div>
+            </div>
+            <div class="bp-q">
+              <span class="bp-q-lbl">Questions we work through</span>
+              <ul>
+                <li>How fast and how consistently are leads followed up?</li>
+                <li>Where does the sales handoff break down?</li>
+                <li>What's actually tracked — calls, forms, booked jobs, revenue?</li>
+                <li>Do your reports tell you what to do next, or just what happened?</li>
+              </ul>
+            </div>
           </div>
-        </article>
+        </div>
+
+        <div class="bp-nav">
+          <button class="bp-arrow bp-prev" type="button" aria-label="Previous dimension" disabled>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+            Previous
+          </button>
+          <span class="bp-progress"><span id="bpProgress">1</span> <span class="bp-progress-sep">/</span> 6</span>
+          <button class="bp-arrow bp-next" type="button" aria-label="Next dimension">
+            Next
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+        </div>
       </div>
     </div>
   </section>
@@ -1998,37 +2271,35 @@ section[data-section] { padding: var(--space-16) 0; }
           </g>
         </svg>
         <p>Strategy-first marketing for growth-minded roofing companies. Strategy, web, SEO, paid media, video, email, social, and reporting — connected.</p>
-        <a href="schedule-strategy-call.html" class="footer-cta">Schedule A Strategy Call →</a>
+        <div class="footer-actions">
+          <a href="schedule-strategy-call.html" class="btn btn-cta">Schedule A Strategy Call</a>
+          <a href="https://splashomnimedia.com" class="footer-cta">Visit Our Main Site →</a>
+        </div>
       </div>
 
       <div class="footer-col">
-        <h4>Strategy</h4>
+        <h4><a href="strategy.html">Strategy</a></h4>
         <ul>
-          <li><a href="strategy.html">Roofing Strategy</a></li>
           <li><a href="one-day-marketing-strategy.html">One-Day Marketing Strategy</a></li>
-          <li><a href="results.html">Roofing Results</a></li>
-          <li><a href="resources.html#scorecard-download">Resources</a></li>
         </ul>
+        <h4 class="footer-col-next"><a href="websites.html">Websites</a></h4>
+        <h4 class="footer-col-next"><a href="video.html">Video</a></h4>
       </div>
 
       <div class="footer-col">
-        <h4>Digital Marketing</h4>
+        <h4><a href="digital-marketing.html">Digital Marketing</a></h4>
         <ul>
-          <li><a href="search-engine-optimization.html">SEO</a></li>
-          <li><a href="google-local-service-ads.html">Local Service Ads</a></li>
+          <li><a href="search-engine-optimization.html">Search Engine Optimization</a></li>
+          <li><a href="google-local-service-ads.html">Google Local Service Ads</a></li>
           <li><a href="google-ads-ppc.html">Google Ads (PPC)</a></li>
           <li><a href="email-marketing.html">Email Marketing</a></li>
-          <li><a href="social-media-marketing.html">Social Media</a></li>
+          <li><a href="social-media-marketing.html">Social Media Marketing</a></li>
         </ul>
       </div>
 
       <div class="footer-col">
-        <h4>Other Services</h4>
-        <ul>
-          <li><a href="websites.html">Websites</a></li>
-          <li><a href="video.html">Video</a></li>
-          <li><a href="digital-marketing.html">All Digital Marketing</a></li>
-        </ul>
+        <h4><a href="results.html">Results</a></h4>
+        <h4 class="footer-col-next"><a href="resources.html#scorecard-download">Resources</a></h4>
       </div>
     </div>
 
@@ -2051,6 +2322,44 @@ section[data-section] { padding: var(--space-16) 0; }
 </div>
 
 <script>
+/* Strategy Blueprint stepper */
+(function(){
+  var bp = document.getElementById('blueprint');
+  if (!bp) return;
+  var steps = Array.prototype.slice.call(bp.querySelectorAll('.bp-step'));
+  var panels = Array.prototype.slice.call(bp.querySelectorAll('.bp-panel'));
+  var prev = bp.querySelector('.bp-prev');
+  var next = bp.querySelector('.bp-next');
+  var prog = document.getElementById('bpProgress');
+  var cur = 0;
+  function go(i){
+    cur = Math.max(0, Math.min(steps.length - 1, i));
+    steps.forEach(function(s, idx){
+      s.classList.toggle('is-active', idx === cur);
+      s.classList.toggle('is-done', idx < cur);
+      s.setAttribute('aria-selected', idx === cur ? 'true' : 'false');
+    });
+    panels.forEach(function(p, idx){
+      var on = idx === cur;
+      p.classList.toggle('is-active', on);
+      if (on) { p.removeAttribute('hidden'); } else { p.setAttribute('hidden', ''); }
+    });
+    if (prog) prog.textContent = cur + 1;
+    if (prev) prev.disabled = cur === 0;
+    if (next) next.disabled = cur === steps.length - 1;
+  }
+  steps.forEach(function(s, idx){
+    s.addEventListener('click', function(){ go(idx); });
+    s.addEventListener('keydown', function(e){
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); go(idx + 1); steps[cur].focus(); }
+      else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); go(idx - 1); steps[cur].focus(); }
+    });
+  });
+  if (prev) prev.addEventListener('click', function(){ go(cur - 1); });
+  if (next) next.addEventListener('click', function(){ go(cur + 1); });
+  go(0);
+})();
+
 /* Header scroll-shift */
 (function(){
   var header = document.getElementById('siteHeader');

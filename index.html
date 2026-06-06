@@ -304,8 +304,8 @@ h4 { font-family: var(--font-subheadline); font-size: var(--text-lg); font-weigh
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 72px;
-  gap: var(--space-6);
+  height: 84px;
+  gap: var(--space-8);
 }
 .brand-mark {
   display: inline-flex;
@@ -315,7 +315,7 @@ h4 { font-family: var(--font-subheadline); font-size: var(--text-lg); font-weigh
   color: var(--color-charcoal-navy);
 }
 .brand-mark .logo-svg {
-  height: 36px;
+  height: 46px;
   width: auto;
   display: block;
   flex-shrink: 0;
@@ -323,7 +323,7 @@ h4 { font-family: var(--font-subheadline); font-size: var(--text-lg); font-weigh
 /* Default wordmark fill — Powerful Navy per Brand Sheet */
 .brand-mark .logo-svg .wordmark path { fill: var(--color-powerful-navy); }
 @media (max-width: 560px) {
-  .brand-mark .logo-svg { height: 30px; }
+  .brand-mark .logo-svg { height: 38px; }
 }
 .brand-mark .microsite-label {
   font-family: var(--font-subheadline);
@@ -357,6 +357,7 @@ h4 { font-family: var(--font-subheadline); font-size: var(--text-lg); font-weigh
   text-decoration: none;
   padding: var(--space-2) 0;
   position: relative;
+  white-space: nowrap;
   transition: color var(--transition-fast);
 }
 .nav-item:hover { color: var(--color-splash-blue); }
@@ -426,7 +427,7 @@ h4 { font-family: var(--font-subheadline); font-size: var(--text-lg); font-weigh
 }
 .mobile-menu .btn { width: 100%; }
 
-@media (max-width: 960px) {
+@media (max-width: 1040px) {
   .primary-nav .nav-list { display: none; }
   .header-cta-desktop { display: none; }
   .menu-toggle { display: block; }
@@ -438,10 +439,15 @@ h4 { font-family: var(--font-subheadline); font-size: var(--text-lg); font-weigh
 .hero {
   background: var(--gradient-v1);
   color: var(--fg-inverted);
-  padding: var(--space-20) 0;
+  padding: var(--space-10) 0;
+  aspect-ratio: 16 / 9;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
   position: relative;
   overflow: hidden;
 }
+.hero > .hero-inner { width: 100%; }
 /* Hero background video — sits over the gradient, beneath content.
    No-op in prototype (no sources); gradient shows through. */
 .hero-bg-video {
@@ -489,31 +495,31 @@ h4 { font-family: var(--font-subheadline); font-size: var(--text-lg); font-weigh
   z-index: 1;
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
-  gap: var(--space-16);
+  gap: var(--space-12);
   align-items: center;
 }
 .hero-content { max-width: 640px; }
 .hero h1 {
   font-family: var(--font-headline);
-  font-size: var(--text-5xl);
+  font-size: var(--text-4xl);
   line-height: var(--leading-tight);
   color: var(--fg-inverted);
-  margin-bottom: var(--space-6);
+  margin-bottom: var(--space-4);
   letter-spacing: -0.01em;
 }
 .hero .subhead {
   font-family: var(--font-body);
-  font-size: var(--text-md);
+  font-size: var(--text-base);
   color: rgba(255,255,255,0.88);
   line-height: var(--leading-relaxed);
-  margin-bottom: var(--space-5);
+  margin-bottom: var(--space-3);
 }
 .hero .hero-body {
   font-size: var(--text-base);
   color: rgba(255,255,255,0.78);
-  margin-bottom: var(--space-8);
+  margin-bottom: var(--space-6);
 }
-.hero .cta-row { margin-bottom: var(--space-8); }
+.hero .cta-row { margin-bottom: 0; }
 .hero .trust-cue {
   display: inline-flex;
   align-items: center;
@@ -539,7 +545,7 @@ h4 { font-family: var(--font-subheadline); font-size: var(--text-lg); font-weigh
    ============================================================ */
 .hero-visual {
   position: relative;
-  aspect-ratio: 4 / 4.2;
+  aspect-ratio: 4 / 3.4;
   display: block;
 }
 
@@ -585,8 +591,34 @@ h4 { font-family: var(--font-subheadline); font-size: var(--text-lg); font-weigh
     linear-gradient(225deg, transparent 55%, rgba(51,217,255,0.05) 55%, rgba(51,217,255,0.05) 56%, transparent 56%);
   pointer-events: none;
 }
+.hero-visual .consultation-frame.has-img { justify-content: flex-end; }
+.hero-visual .cf-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+.hero-visual .consultation-frame.has-img::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(3,42,63,0) 55%, rgba(3,42,63,0.5) 100%),
+    linear-gradient(135deg, rgba(3,42,63,0.5) 0%, rgba(18,90,130,0.42) 100%);
+  z-index: 1;
+}
+.hero-visual .hv-chip .chip-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-sm);
+  margin-bottom: var(--space-3);
+}
 .hero-visual .cf-content {
   position: relative;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
@@ -767,7 +799,7 @@ h4 { font-family: var(--font-subheadline); font-size: var(--text-lg); font-weigh
 }
 
 @media (max-width: 960px) {
-  .hero { padding: var(--space-12) 0; }
+  .hero { padding: var(--space-12) 0; min-height: auto; aspect-ratio: auto; display: block; }
   .hero h1 { font-size: var(--text-3xl); }
   .hero-inner { grid-template-columns: 1fr; gap: var(--space-10); }
   .hero-visual { aspect-ratio: 4 / 3.4; max-width: 560px; margin: 0 auto; width: 100%; }
@@ -963,11 +995,9 @@ section[data-section] { padding: var(--space-16) 0; }
   content: '';
   display: inline-block;
   flex-shrink: 0;
-  width: 8px; height: 8px;
-  margin-top: 10px;
-  background: var(--color-splash-blue);
-  border-radius: 2px;
-  transform: rotate(45deg);
+  width: 16px; height: 16px;
+  margin-top: 4px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2300b0e0' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 12h15'/%3E%3Cpath d='M13 6l6 6-6 6'/%3E%3C/svg%3E") no-repeat center / contain;
 }
 .callout {
   background: var(--bg-subtle);
@@ -1039,15 +1069,59 @@ section[data-section] { padding: var(--space-16) 0; }
 }
 .strategy-visual .sv-list .check svg { width: 11px; height: 11px; color: white; }
 
+/* Split-screen variant: full-bleed photo behind the left half */
+.content-img.split-strategy { position: relative; overflow: hidden; }
+.content-img.split-strategy::before {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0; left: 0;
+  width: 50%;
+  background:
+    linear-gradient(135deg, rgba(3,42,63,0.85) 0%, rgba(18,90,130,0.78) 100%),
+    url('assets/AdobeStock_1641458003-web.jpg') center / cover no-repeat;
+  z-index: 0;
+}
+.content-img.split-strategy .content-img-inner { position: relative; z-index: 1; }
+.content-img.split-strategy .strategy-visual {
+  background: var(--bg-primary);
+  box-shadow: var(--shadow-xl);
+}
+
 @media (max-width: 900px) {
   .content-img-inner { grid-template-columns: 1fr; gap: var(--space-8); }
   .content-img.reverse .content-img-inner { direction: ltr; }
+  .content-img.split-strategy::before { display: none; }
 }
 
 /* ============================================================
    PART 9 — STACKED CARD (stacked-card-01) — Growth Framework
    ============================================================ */
 .framework-section { background: var(--bg-subtle); }
+/* Scroll-drawn connector line */
+.framework-section .container { position: relative; }
+.framework-section .section-header,
+.framework-section .stacked-cards,
+.framework-section .section-end-cta { position: relative; z-index: 1; }
+.fw-line-svg {
+  position: absolute;
+  left: 0; top: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: visible;
+}
+.fw-line-svg path {
+  fill: none;
+  stroke: var(--color-splash-blue);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.fw-line-svg .fw-line-arrow {
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+.fw-line-svg .fw-line-arrow.is-visible { opacity: 1; }
+.stacked-card .number { position: relative; z-index: 1; background: var(--bg-subtle); }
 .stacked-cards { display: flex; flex-direction: column; max-width: 960px; margin: 0 auto; }
 .stacked-card {
   display: grid;
@@ -1084,6 +1158,107 @@ section[data-section] { padding: var(--space-16) 0; }
    PART 10 — SERVICE PATHWAYS (grid-5card-01, Light variant)
    ============================================================ */
 .services-section { background: var(--bg-primary); }
+.journey-section { background: var(--bg-primary); }
+/* Interactive path selector */
+.path-selector {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: var(--space-8);
+  align-items: start;
+}
+.path-tabs { display: flex; flex-direction: column; gap: var(--space-2); }
+.path-tab {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  width: 100%;
+  text-align: left;
+  padding: var(--space-4);
+  background: transparent;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  color: var(--fg-primary);
+  font-family: var(--font-subheadline);
+  font-weight: var(--weight-semibold);
+  font-size: var(--text-md);
+  transition: border-color var(--transition-base), background var(--transition-base), box-shadow var(--transition-base);
+}
+.path-tab:hover { border-color: var(--color-splash-blue); background: var(--bg-subtle); }
+.path-tab:focus-visible { outline: 2px solid var(--color-splash-blue); outline-offset: 2px; }
+.path-tab.is-active {
+  border-color: var(--color-splash-blue);
+  background: var(--bg-primary);
+  box-shadow: var(--shadow-md);
+}
+.path-tab-ic {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px; height: 38px;
+  flex-shrink: 0;
+  border-radius: var(--radius-md);
+  background: rgba(0,176,224,0.08);
+  color: var(--color-splash-blue);
+}
+.path-tab-ic svg { width: 20px; height: 20px; }
+.path-tab-txt { flex: 1; }
+.path-tab-chev {
+  display: inline-flex;
+  color: var(--color-splash-blue);
+  opacity: 0;
+  transform: translateX(-6px);
+  transition: opacity var(--transition-base), transform var(--transition-base);
+}
+.path-tab-chev svg { width: 18px; height: 18px; }
+.path-tab.is-active .path-tab-chev { opacity: 1; transform: none; }
+.path-stage {
+  position: relative;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: var(--space-10);
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+}
+.path-panel[hidden] { display: none; }
+.path-panel { animation: pathFade 0.3s ease; }
+@keyframes pathFade {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+.path-panel-ic {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px; height: 56px;
+  border-radius: var(--radius-lg);
+  background: rgba(0,176,224,0.1);
+  color: var(--color-splash-blue);
+  margin-bottom: var(--space-5);
+}
+.path-panel-ic svg { width: 30px; height: 30px; }
+.path-panel-title {
+  font-family: var(--font-headline);
+  font-size: var(--text-2xl);
+  color: var(--fg-primary);
+  margin-bottom: var(--space-3);
+  line-height: var(--leading-snug);
+}
+.path-panel-desc {
+  font-size: var(--text-md);
+  color: var(--fg-secondary);
+  line-height: var(--leading-relaxed);
+  margin-bottom: var(--space-6);
+  max-width: 48ch;
+}
+@media (max-width: 768px) {
+  .path-selector { grid-template-columns: 1fr; gap: var(--space-5); }
+  .path-stage { min-height: 0; padding: var(--space-6); }
+  .path-tab { font-size: var(--text-base); }
+}
+.audience-section { background: var(--bg-subtle); }
 
 /* ============================================================
    PATHWAYS — 1 featured + 4 supporting (asymmetric layout)
@@ -1230,6 +1405,79 @@ section[data-section] { padding: var(--space-16) 0; }
   grid-template-rows: 1fr 1fr;
   gap: var(--space-6);
 }
+.service-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space-6);
+  align-items: stretch;
+}
+.service-cards-grid .pathway-card .pc-link { margin-top: auto; }
+/* Service flow: alternating cards connected by a scroll-drawn line */
+.svc-flow {
+  position: relative;
+  max-width: 1040px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+}
+.svc-line-svg {
+  position: absolute;
+  left: 0; top: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: visible;
+}
+.svc-line-svg path {
+  fill: none;
+  stroke: var(--color-splash-blue);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.svc-step {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.svc-step .pathway-card { box-shadow: var(--shadow-md); }
+.svc-step.svc-left .pathway-card { grid-column: 1; margin-right: var(--space-12); }
+.svc-step.svc-right .pathway-card { grid-column: 2; margin-left: var(--space-12); }
+.svc-step.svc-center { grid-template-columns: 1fr; justify-items: center; }
+.svc-step.svc-center .pathway-card {
+  grid-column: 1;
+  margin: 0;
+  max-width: 540px;
+  text-align: center;
+  align-items: center;
+}
+.svc-finale {
+  background: linear-gradient(135deg, #032a3f 0%, #0a3a52 55%, #125a82 100%) !important;
+  border-color: transparent !important;
+  color: var(--color-white);
+}
+.svc-finale .pc-title { color: var(--color-white); }
+.svc-finale .pc-desc { color: rgba(255,255,255,0.82); }
+.svc-finale .svc-finale-ic {
+  background: rgba(51,217,255,0.15);
+  color: var(--color-vivid-sky-blue);
+}
+.svc-finale .btn-cta { margin-top: var(--space-2); }
+@media (max-width: 768px) {
+  .svc-flow { gap: var(--space-5); }
+  .svc-step { grid-template-columns: 1fr; }
+  .svc-step.svc-left .pathway-card,
+  .svc-step.svc-right .pathway-card { grid-column: 1; margin: 0; }
+  .svc-line-svg { display: none; }
+}
+.pathway-card .pc-img {
+  display: block;
+  width: calc(100% + var(--space-5) * 2);
+  height: 160px;
+  object-fit: cover;
+  margin: calc(var(--space-5) * -1) calc(var(--space-5) * -1) var(--space-4);
+}
 .pathway-card {
   background: var(--bg-primary);
   border: 1px solid var(--border-color);
@@ -1337,6 +1585,13 @@ section[data-section] { padding: var(--space-16) 0; }
   letter-spacing: 0.02em;
   line-height: 1;
 }
+.dm-row .dm-icon {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  color: var(--color-vivid-sky-blue);
+}
+.dm-row .dm-icon svg { display: block; }
 .dm-row .dm-body {
   display: flex;
   flex-direction: column;
@@ -1462,6 +1717,15 @@ section[data-section] { padding: var(--space-16) 0; }
     linear-gradient(135deg, transparent 55%, rgba(255,255,255,0.04) 55%, rgba(255,255,255,0.04) 57%, transparent 57%),
     linear-gradient(225deg, transparent 55%, rgba(51,217,255,0.05) 55%, rgba(51,217,255,0.05) 57%, transparent 57%);
   pointer-events: none;
+}
+.proof-video .video-frame.has-embed::before { display: none; }
+.proof-video .video-frame.has-embed iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  z-index: 2;
 }
 .video-play-btn {
   position: relative;
@@ -1676,41 +1940,55 @@ section[data-section] { padding: var(--space-16) 0; }
    PART 13 — LEAD MAGNET (cta-standard-01, Primary variant)
    ============================================================ */
 .lead-magnet-section {
-  background: var(--color-splash-blue);
-  color: var(--color-charcoal-navy);
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #032a3f 0%, #0a3a52 55%, #125a82 100%);
+  color: var(--color-white);
+}
+.lead-magnet-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 85% 8%, rgba(51,217,255,0.18), transparent 45%),
+    radial-gradient(circle at 5% 90%, rgba(0,176,224,0.14), transparent 45%);
+  pointer-events: none;
 }
 .lead-magnet-inner {
+  position: relative;
+  z-index: 1;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--space-10);
-  align-items: start;
+  align-items: center;
 }
 .lead-magnet-section .eyebrow {
-  color: var(--color-charcoal-navy);
-  background: rgba(255,255,255,0.4);
-  padding: 4px 10px;
+  color: var(--color-vivid-sky-blue);
+  background: rgba(51,217,255,0.12);
+  border: 1px solid rgba(51,217,255,0.3);
+  padding: 5px 12px;
   border-radius: var(--radius-full);
   text-transform: uppercase;
 }
 .lead-magnet-section h2 {
-  color: var(--color-charcoal-navy);
-  margin-bottom: var(--space-5);
+  color: var(--color-white);
+  margin: var(--space-4) 0 var(--space-5);
 }
 .lead-magnet-section .lm-body {
-  color: var(--color-charcoal-navy);
+  color: rgba(255,255,255,0.82);
   font-size: var(--text-md);
+  line-height: var(--leading-relaxed);
   margin-bottom: var(--space-6);
-  opacity: 0.92;
 }
 
-/* Three value bullets */
+/* Compact value props as pills */
 .lm-bullets {
   list-style: none;
-  margin: 0 0 var(--space-8);
+  margin: 0 0 var(--space-6);
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: var(--space-4);
+  gap: var(--space-3);
 }
 .lm-bullets li {
   display: flex;
@@ -1718,28 +1996,28 @@ section[data-section] { padding: var(--space-16) 0; }
   gap: var(--space-3);
   font-family: var(--font-body);
   font-size: var(--text-base);
-  color: var(--color-charcoal-navy);
+  color: rgba(255,255,255,0.9);
   line-height: var(--leading-snug);
 }
 .lm-bullet-icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 28px;
-  height: 28px;
+  width: 26px;
+  height: 26px;
   border-radius: 50%;
-  background: var(--color-white);
-  color: var(--color-charcoal-navy);
+  background: rgba(51,217,255,0.15);
+  color: var(--color-vivid-sky-blue);
   flex-shrink: 0;
-  margin-top: 2px;
+  margin-top: 1px;
 }
 .lm-bullet-icon svg { width: 14px; height: 14px; }
-.lm-bullet-text { font-weight: var(--weight-semibold); }
+.lm-bullet-text { font-weight: var(--weight-medium); }
 
 .lead-magnet-section .secondary-link {
   display: inline-block;
-  margin-top: var(--space-6);
-  color: var(--color-charcoal-navy);
+  margin-top: var(--space-2);
+  color: var(--color-vivid-sky-blue);
   font-family: var(--font-subheadline);
   font-weight: var(--weight-bold);
   font-size: var(--text-sm);
@@ -1747,25 +2025,22 @@ section[data-section] { padding: var(--space-16) 0; }
   text-underline-offset: 4px;
   text-decoration-thickness: 2px;
 }
-.lead-magnet-section .secondary-link:hover {
-  color: var(--color-white);
-  text-decoration-color: var(--color-white);
-}
+.lead-magnet-section .secondary-link:hover { color: var(--color-white); }
 .lead-magnet-section .secondary-link:focus-visible {
-  outline: 2px solid var(--color-charcoal-navy);
+  outline: 2px solid var(--color-vivid-sky-blue);
   outline-offset: 3px;
 }
 
-/* Scorecard preview mockup — stronger, more polished UI asset */
-.scorecard-preview {
+/* Animated "live" scorecard */
+.score-card {
   background: var(--color-white);
   border-radius: var(--radius-lg);
-  padding: var(--space-5);
-  margin: var(--space-6) 0;
-  box-shadow: var(--shadow-md);
+  padding: var(--space-6);
+  margin: var(--space-6) 0 var(--space-5);
+  box-shadow: var(--shadow-xl);
   color: var(--fg-primary);
 }
-.scorecard-preview .sp-header {
+.score-card .sc-head {
   display: flex;
   align-items: center;
   gap: var(--space-3);
@@ -1773,7 +2048,7 @@ section[data-section] { padding: var(--space-16) 0; }
   padding-bottom: var(--space-4);
   border-bottom: 1px solid var(--border-color);
 }
-.scorecard-preview .sp-tag {
+.score-card .sc-tag {
   font-family: var(--font-subheadline);
   font-size: 10px;
   font-weight: var(--weight-semibold);
@@ -1784,49 +2059,66 @@ section[data-section] { padding: var(--space-16) 0; }
   padding: 4px 10px;
   border-radius: var(--radius-full);
 }
-.scorecard-preview .sp-title {
+.score-card .sc-title {
   font-family: var(--font-headline);
   font-size: var(--text-base);
   color: var(--color-charcoal-navy);
-  font-weight: var(--weight-regular);
 }
-.scorecard-preview .sp-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-3);
-}
-.scorecard-preview .sp-list li {
+.score-card .sc-body {
   display: grid;
-  grid-template-columns: 20px 1fr 32px;
+  grid-template-columns: auto 1fr;
+  gap: var(--space-6);
   align-items: center;
-  gap: var(--space-3);
-  font-family: var(--font-body);
-  font-size: var(--text-sm);
-  color: var(--fg-primary);
 }
-.scorecard-preview .sp-check {
-  width: 16px; height: 16px;
-  border-radius: var(--radius-sm);
-  border: 1.5px solid var(--color-splash-blue);
-  position: relative;
+.sc-gauge { position: relative; width: 116px; height: 116px; text-align: center; }
+.sc-gauge svg { width: 116px; height: 116px; }
+.sc-ring-track { fill: none; stroke: rgba(3,42,63,0.08); stroke-width: 10; }
+.sc-ring-fill {
+  fill: none;
+  stroke: url(#scGrad);
+  stroke-width: 10;
+  stroke-linecap: round;
+  stroke-dasharray: 327;
+  stroke-dashoffset: 327;
+  transform: rotate(-90deg);
+  transform-origin: center;
+  transition: stroke-dashoffset 1.5s cubic-bezier(.16,1,.3,1);
 }
-.scorecard-preview .sp-check::after {
-  content: '';
+.score-card.is-animated .sc-ring-fill { stroke-dashoffset: 105; }
+.sc-gauge-num {
   position: absolute;
-  inset: 3px;
-  border-radius: 1px;
-  background: var(--color-splash-blue);
-  opacity: 0.85;
+  top: 42%; left: 0; right: 0;
+  transform: translateY(-50%);
+  font-family: var(--font-headline);
+  font-size: var(--text-2xl);
+  color: var(--color-charcoal-navy);
+  line-height: 1;
 }
-.scorecard-preview .sp-marker {
-  height: 6px;
-  border-radius: 3px;
-  background: linear-gradient(90deg, var(--color-light-gray), var(--color-light-gray) 60%, var(--color-splash-blue) 60%);
+.sc-gauge-den { font-size: var(--text-sm); color: var(--color-powerful-gray); }
+.sc-gauge-lbl {
+  position: absolute;
+  bottom: 12%; left: 0; right: 0;
+  font-family: var(--font-subheadline);
+  font-size: 10px;
+  font-weight: var(--weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-powerful-gray);
 }
-.scorecard-preview .sp-footer {
+.sc-bars { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--space-3); }
+.sc-bars li { display: grid; gap: 5px; }
+.sc-bar-lbl { font-family: var(--font-body); font-size: var(--text-sm); color: var(--fg-primary); }
+.sc-bar { display: block; height: 8px; border-radius: 4px; background: rgba(3,42,63,0.08); overflow: hidden; }
+.sc-bar-fill {
+  display: block;
+  height: 100%;
+  width: 0;
+  border-radius: 4px;
+  background: linear-gradient(90deg, var(--color-splash-blue), var(--color-vivid-sky-blue));
+  transition: width 1.3s cubic-bezier(.16,1,.3,1);
+}
+.score-card.is-animated .sc-bar-fill { width: var(--v); }
+.score-card .sc-foot {
   margin-top: var(--space-5);
   padding-top: var(--space-4);
   border-top: 1px solid var(--border-color);
@@ -1840,11 +2132,10 @@ section[data-section] { padding: var(--space-16) 0; }
   letter-spacing: 0.1em;
   color: var(--color-powerful-gray);
 }
-.scorecard-preview .sp-footer-format {
-  background: var(--bg-subtle);
-  padding: 4px 8px;
-  border-radius: var(--radius-sm);
-  font-size: 10px;
+.score-card .sc-foot-fmt { background: var(--bg-subtle); padding: 4px 8px; border-radius: var(--radius-sm); font-size: 10px; }
+@media (max-width: 560px) {
+  .score-card .sc-body { grid-template-columns: 1fr; justify-items: center; }
+  .sc-bars { width: 100%; }
 }
 
 /* Form column */
@@ -2018,6 +2309,24 @@ section[data-section] { padding: var(--space-16) 0; }
   background: radial-gradient(circle at 80% 20%, rgba(51,217,255,0.18), transparent 50%);
   pointer-events: none;
 }
+.about-visual.has-img .av-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+.about-visual.has-img::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(3,42,63,0.45) 0%, rgba(3,42,63,0.85) 100%);
+  z-index: 1;
+}
+.about-visual.has-img .av-eyebrow,
+.about-visual.has-img .av-stat,
+.about-visual.has-img .av-tags { z-index: 2; }
 .about-visual .av-eyebrow {
   position: relative;
   font-family: var(--font-subheadline);
@@ -2131,7 +2440,9 @@ section[data-section] { padding: var(--space-16) 0; }
    PART 16 — FINAL CTA (cta-standard-01, Dark variant)
    ============================================================ */
 .final-cta {
-  background: var(--gradient-v2);
+  background:
+    linear-gradient(135deg, rgba(8,53,83,0.92) 0%, rgba(0,138,170,0.85) 100%),
+    url('assets/cta-bg.jpg') center / cover no-repeat;
   color: var(--fg-inverted);
   text-align: center;
   position: relative;
@@ -2139,20 +2450,7 @@ section[data-section] { padding: var(--space-16) 0; }
 }
 /* Subtle roofline + strategy-pattern accent (per video & photography brief).
    Pure CSS — no external dependency. Keeps contrast on CTA Orange button intact. */
-.final-cta::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image:
-    /* Two converging roofline angles */
-    linear-gradient(135deg, transparent 70%, rgba(255,255,255,0.04) 70%, rgba(255,255,255,0.04) 71%, transparent 71%),
-    linear-gradient(225deg, transparent 70%, rgba(51,217,255,0.05) 70%, rgba(51,217,255,0.05) 71%, transparent 71%),
-    /* Subtle blueprint grid */
-    linear-gradient(to right, rgba(255,255,255,0.025) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255,255,255,0.025) 1px, transparent 1px);
-  background-size: auto, auto, 48px 48px, 48px 48px;
-  pointer-events: none;
-}
+.final-cta::before { content: none; }
 .final-cta .container {
   max-width: 760px;
   position: relative;
@@ -2216,6 +2514,13 @@ section[data-section] { padding: var(--space-16) 0; }
   font-weight: var(--weight-semibold);
   font-size: var(--text-sm);
 }
+.footer-brand .footer-cta:hover { color: var(--color-white); }
+.footer-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-4);
+}
 .footer-col ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: var(--space-3); }
 .footer-col a {
   color: rgba(255,255,255,0.72);
@@ -2224,6 +2529,9 @@ section[data-section] { padding: var(--space-16) 0; }
   font-size: var(--text-sm);
 }
 .footer-col a:hover { color: var(--color-vivid-sky-blue); }
+.footer-col h4 a { color: var(--color-white); font: inherit; text-decoration: none; }
+.footer-col h4 a:hover { color: var(--color-vivid-sky-blue); }
+.footer-col h4.footer-col-next { margin-top: var(--space-5); }
 .footer-legal {
   border-top: 1px solid var(--border-color-dark);
   padding-top: var(--space-6);
@@ -2334,14 +2642,14 @@ section[data-section] { padding: var(--space-16) 0; }
 
     <nav class="primary-nav" aria-label="Primary">
       <ul class="nav-list">
-        <li><a class="nav-item active" href="strategy.html" aria-current="page">Strategy</a></li>
-        <li><a class="nav-item" href="digital-marketing.html">Digital Marketing</a></li>
+        <li><a class="nav-item" href="strategy.html">Strategy</a></li>
         <li><a class="nav-item" href="websites.html">Websites</a></li>
         <li><a class="nav-item" href="video.html">Video</a></li>
+        <li><a class="nav-item" href="digital-marketing.html">Digital Marketing</a></li>
         <li><a class="nav-item" href="results.html">Results</a></li>
         <li><a class="nav-item" href="resources.html#scorecard-download">Resources</a></li>
       </ul>
-      <a href="schedule-strategy-call.html" class="btn btn-cta header-cta-desktop">Schedule A Roofing Strategy Call</a>
+      <a href="schedule-strategy-call.html" class="btn btn-cta header-cta-desktop">Schedule A Strategy Call</a>
     </nav>
 
     <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
@@ -2355,13 +2663,13 @@ section[data-section] { padding: var(--space-16) 0; }
   <div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Mobile navigation" aria-modal="true" hidden>
     <ul class="nav-list">
       <li><a class="nav-item" href="strategy.html">Strategy</a></li>
-      <li><a class="nav-item" href="digital-marketing.html">Digital Marketing</a></li>
       <li><a class="nav-item" href="websites.html">Websites</a></li>
       <li><a class="nav-item" href="video.html">Video</a></li>
+      <li><a class="nav-item" href="digital-marketing.html">Digital Marketing</a></li>
       <li><a class="nav-item" href="results.html">Results</a></li>
       <li><a class="nav-item" href="resources.html#scorecard-download">Resources</a></li>
     </ul>
-    <a href="schedule-strategy-call.html" class="btn btn-cta">Schedule A Roofing Strategy Call</a>
+    <a href="schedule-strategy-call.html" class="btn btn-cta">Schedule A Strategy Call</a>
   </div>
 </header>
 
@@ -2372,10 +2680,8 @@ section[data-section] { padding: var(--space-16) 0; }
        Purpose: High-impact entry point for the microsite.
        ============================================================ -->
   <section class="hero" data-section="hero-primary-01" aria-labelledby="hero-heading">
-    <!-- Hero background video — muted, autoplay, loop, playsinline, 8–15s loop.
-         Hidden when prefers-reduced-motion: reduce. No <source> in prototype to avoid
-         shipping fake media; production team adds the .mp4/.webm sources here.
-         {NEEDS: hero video loop showing marketing strategy consultation with roofing context} -->
+    <!-- Hero background video — muted, autoplay, loop, playsinline (~12s loop).
+         Hidden when prefers-reduced-motion: reduce. Falls back to poster image. -->
     <div class="hero-bg-video" aria-hidden="true">
       <video
         class="hero-video"
@@ -2383,26 +2689,23 @@ section[data-section] { padding: var(--space-16) 0; }
         muted
         loop
         playsinline
-        preload="none"
-        poster=""
+        preload="metadata"
+        poster="assets/hero-poster.jpg"
         aria-hidden="true">
-        <!-- {NEEDS: hero video loop showing marketing strategy consultation with roofing context} -->
-        <!-- Production: add <source src="media/roofing-hero-loop.mp4" type="video/mp4"> -->
-        <!-- Production: add <source src="media/roofing-hero-loop.webm" type="video/webm"> -->
+        <source src="assets/hero-loop.mp4" type="video/mp4">
       </video>
       <div class="hero-bg-overlay"></div>
     </div>
     <div class="container hero-inner">
       <div class="hero-content">
         <span class="eyebrow on-dark">Roofing Marketing Strategy &amp; Execution</span>
-        <h1 id="hero-heading">Marketing Strategy For Roofing Companies Ready To Grow</h1>
+        <h1 id="hero-heading">Strategy-First Marketing Agency for Roofing Companies Ready to Grow</h1>
         <p class="subhead">You don't need more random marketing. You need a clear plan, stronger visibility, sales alignment, and a team to help turn attention into real opportunities.</p>
-        <p class="hero-body">Splash helps growth-minded roofing companies connect strategy, websites, SEO, ads, LSAs, video, email, social, and reporting — so every marketing move has a purpose.</p>
+        <p class="hero-body">Splash helps established roofing companies turn disconnected marketing into a clear growth roadmap and connected execution.</p>
         <div class="cta-row">
           <a href="schedule-strategy-call.html" class="btn btn-cta btn-lg">Schedule A Roofing Strategy Call</a>
           <a href="#growth-framework" class="btn btn-inverted-out">See How We Help Roofers Grow</a>
         </div>
-        <span class="trust-cue"><span class="dot" aria-hidden="true"></span>Built for roofing companies ready for clearer strategy and stronger execution</span>
       </div>
 
       <!-- Hero visual: dominant strategy-consultation frame with secondary overlays.
@@ -2413,90 +2716,99 @@ section[data-section] { padding: var(--space-16) 0; }
         <!-- ============================
              PRIMARY: consultation frame
              ============================ -->
-        <figure class="consultation-frame" role="img"
-                aria-label="Marketing strategist meeting with a roofing company leadership team — production replaces this placeholder with licensed image or video.">
-          <!-- {NEEDS: hero video loop showing marketing strategy consultation with roofing context} -->
-          <!-- {NEEDS: alternative still image — marketing strategist with roofing business owner reviewing a growth plan} -->
+        <figure class="consultation-frame has-img">
+          <img class="cf-img" src="assets/AdobeStock_1974978486-web.jpg" alt="A marketing strategist reviewing a growth plan with a roofing company's leadership team">
           <div class="cf-content">
             <span class="cf-tag">Strategy Consultation</span>
-            <span class="cf-headline">A strategist working through a growth plan with a roofing leadership team</span>
-            <span class="cf-meta">{NEEDS: hero video or consultation image}</span>
           </div>
-          <span class="cf-play-cue" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><polygon points="8 5 19 12 8 19 8 5"/></svg>
-          </span>
         </figure>
 
         <!-- ============================
-             SECONDARY: dashboard chip (upper-right)
+             SECONDARY: single reporting accent (upper-right)
              ============================ -->
         <aside class="hv-chip hv-chip-dashboard" aria-hidden="true">
           <span class="chip-label">Reporting</span>
-          <div class="chip-rows">
-            <span class="chip-bar" style="--w: 78%"></span>
-            <span class="chip-bar" style="--w: 62%"></span>
-            <span class="chip-bar" style="--w: 91%"></span>
-          </div>
+          <img class="chip-img" src="assets/AdobeStock_2007974628-web.jpg" alt="">
           <span class="chip-foot">Strategy → Execution → Measure</span>
-        </aside>
-
-        <!-- ============================
-             SECONDARY: website mockup chip (lower-left)
-             ============================ -->
-        <aside class="hv-chip hv-chip-web" aria-hidden="true">
-          <!-- {NEEDS: roofing website mockup} -->
-          <span class="chip-browser-bar">
-            <span class="bb-dot"></span><span class="bb-dot"></span><span class="bb-dot"></span>
-          </span>
-          <span class="chip-web-content">
-            <span class="cw-line cw-line-h"></span>
-            <span class="cw-line cw-line-1"></span>
-            <span class="cw-line cw-line-2"></span>
-            <span class="cw-line cw-line-cta"></span>
-          </span>
-        </aside>
-
-        <!-- ============================
-             SECONDARY: roofing jobsite chip (lower-right)
-             ============================ -->
-        <aside class="hv-chip hv-chip-jobsite" aria-hidden="true">
-          <!-- {NEEDS: roofing jobsite b-roll} -->
-          <svg class="rooftop-svg" viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-            <path d="M0,55 L50,12 L100,55 Z" fill="rgba(255,255,255,0.08)"/>
-            <path d="M0,55 L50,12 L100,55" stroke="rgba(51,217,255,0.4)" stroke-width="1" fill="none"/>
-            <path d="M10,55 L10,40 L25,40 L25,55" stroke="rgba(255,255,255,0.15)" stroke-width="0.6" fill="none"/>
-            <path d="M75,55 L75,42 L90,42 L90,55" stroke="rgba(255,255,255,0.15)" stroke-width="0.6" fill="none"/>
-          </svg>
-          <span class="chip-foot chip-foot-light">Jobsite Context</span>
         </aside>
       </div>
     </div>
   </section>
 
   <!-- ============================================================
-       TRUST STRIP — non-fabricated capability themes
-       (Light variant under Hero; not a fabricated logo bar.)
+       SECTION: Customer-Journey Path Cards (need-based entry points)
+       Ordered to match primary nav: Strategy, Websites, Video,
+       Digital Marketing, Results.
        ============================================================ -->
-  <section class="trust-strip" aria-label="What Splash brings to roofing marketing">
-    <div class="container trust-strip-inner">
-      <div class="ts-item">
-        <span class="ts-num">01</span>
-        <span class="ts-text">Strategy First</span>
+  <section class="journey-section" data-section="journey-01" aria-labelledby="journey-heading">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="eyebrow">Find the Right Marketing Path for Your Next Stage</span>
+        <h2 id="journey-heading">Where Do You Want To Start?</h2>
+        <p class="intro">Every roofing company is at a different point. Start where you need the most help — we'll connect it to the bigger plan from there.</p>
       </div>
-      <div class="ts-divider" aria-hidden="true"></div>
-      <div class="ts-item">
-        <span class="ts-num">02</span>
-        <span class="ts-text">Website + Visibility</span>
-      </div>
-      <div class="ts-divider" aria-hidden="true"></div>
-      <div class="ts-item">
-        <span class="ts-num">03</span>
-        <span class="ts-text">Video + Storytelling</span>
-      </div>
-      <div class="ts-divider" aria-hidden="true"></div>
-      <div class="ts-item">
-        <span class="ts-num">04</span>
-        <span class="ts-text">Measure &amp; Modify</span>
+
+      <div class="path-selector reveal">
+        <div class="path-tabs" role="tablist" aria-label="Find the right marketing path">
+          <button class="path-tab is-active" role="tab" aria-selected="true" id="path-tab-strategy" aria-controls="path-panel-strategy" data-target="strategy" type="button">
+            <span class="path-tab-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 9l10 7 10-7-10-7z"/><path d="M2 15l10 7 10-7"/></svg></span>
+            <span class="path-tab-txt">I need a clearer marketing strategy</span>
+            <span class="path-tab-chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></span>
+          </button>
+          <button class="path-tab" role="tab" aria-selected="false" id="path-tab-website" aria-controls="path-panel-website" data-target="website" type="button">
+            <span class="path-tab-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18"/><circle cx="6.5" cy="6.5" r="0.5" fill="currentColor"/><circle cx="8.5" cy="6.5" r="0.5" fill="currentColor"/></svg></span>
+            <span class="path-tab-txt">I need a stronger website</span>
+            <span class="path-tab-chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></span>
+          </button>
+          <button class="path-tab" role="tab" aria-selected="false" id="path-tab-content" aria-controls="path-panel-content" data-target="content" type="button">
+            <span class="path-tab-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></span>
+            <span class="path-tab-txt">I need better proof and content</span>
+            <span class="path-tab-chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></span>
+          </button>
+          <button class="path-tab" role="tab" aria-selected="false" id="path-tab-leads" aria-controls="path-panel-leads" data-target="leads" type="button">
+            <span class="path-tab-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></span>
+            <span class="path-tab-txt">I need better leads and visibility</span>
+            <span class="path-tab-chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></span>
+          </button>
+          <button class="path-tab" role="tab" aria-selected="false" id="path-tab-examples" aria-controls="path-panel-examples" data-target="examples" type="button">
+            <span class="path-tab-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+            <span class="path-tab-txt">I want to see examples first</span>
+            <span class="path-tab-chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></span>
+          </button>
+        </div>
+
+        <div class="path-stage">
+          <div class="path-panel is-active" role="tabpanel" id="path-panel-strategy" aria-labelledby="path-tab-strategy" tabindex="0">
+            <span class="path-panel-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 9l10 7 10-7-10-7z"/><path d="M2 15l10 7 10-7"/></svg></span>
+            <h3 class="path-panel-title">A clearer marketing strategy</h3>
+            <p class="path-panel-desc">Clarify your audience, message, priorities, channels, and next steps before investing more — so every dollar after has a job to do.</p>
+            <a href="strategy.html" class="btn btn-primary">See the Strategy Process</a>
+          </div>
+          <div class="path-panel" role="tabpanel" id="path-panel-website" aria-labelledby="path-tab-website" tabindex="0" hidden>
+            <span class="path-panel-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18"/><circle cx="6.5" cy="6.5" r="0.5" fill="currentColor"/><circle cx="8.5" cy="6.5" r="0.5" fill="currentColor"/></svg></span>
+            <h3 class="path-panel-title">A stronger website</h3>
+            <p class="path-panel-desc">A website that builds trust, supports search, separates buyer paths, and turns visitors into conversations.</p>
+            <a href="websites.html" class="btn btn-primary">View Website Services</a>
+          </div>
+          <div class="path-panel" role="tabpanel" id="path-panel-content" aria-labelledby="path-tab-content" tabindex="0" hidden>
+            <span class="path-panel-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></span>
+            <h3 class="path-panel-title">Better proof and content</h3>
+            <p class="path-panel-desc">Video, photography, testimonials, project stories, case studies, and sales-support content that show the quality behind your company.</p>
+            <a href="video.html" class="btn btn-primary">Explore Video &amp; Content</a>
+          </div>
+          <div class="path-panel" role="tabpanel" id="path-panel-leads" aria-labelledby="path-tab-leads" tabindex="0" hidden>
+            <span class="path-panel-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></span>
+            <h3 class="path-panel-title">Better leads and visibility</h3>
+            <p class="path-panel-desc">SEO, Google Ads, Local Service Ads, social, email, landing pages, and reporting — connected to the right growth goals.</p>
+            <a href="digital-marketing.html" class="btn btn-primary">Explore Digital Marketing</a>
+          </div>
+          <div class="path-panel" role="tabpanel" id="path-panel-examples" aria-labelledby="path-tab-examples" tabindex="0" hidden>
+            <span class="path-panel-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+            <h3 class="path-panel-title">Examples first</h3>
+            <p class="path-panel-desc">Review work, client examples, proof points, and marketing outcomes before deciding what comes next.</p>
+            <a href="results.html" class="btn btn-primary">See Results</a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -2508,36 +2820,31 @@ section[data-section] { padding: var(--space-16) 0; }
   <section class="problem-section" data-section="grid-5card-01" aria-labelledby="problem-heading">
     <div class="container">
       <div class="section-header reveal">
-        <span class="eyebrow">Where Marketing Breaks Down</span>
-        <h2 id="problem-heading">Your Roofing Company Has Outgrown Random Marketing</h2>
-        <p class="intro">When your company is growing, disconnected marketing starts to show. Your website may not reflect the company you have become. Your ads may be running, but not producing the right opportunities. Your SEO may be active, but not tied to a bigger plan. Your sales team may need better leads, better follow-up, or a clearer message.</p>
+        <span class="eyebrow">Signs It's Time For A Change</span>
+        <h2 id="problem-heading">Has Your Roofing Company Outgrown Your Marketing?</h2>
+        <p class="intro">If your company is growing but your marketing hasn't kept up, the gaps start to show. Here are some signs it's time to take a closer look at your marketing:</p>
       </div>
 
       <div class="grid-5card reveal">
         <article class="card-5">
-          <span class="card-num">01</span>
-          <h3 class="card-title">Your Leads Are Inconsistent</h3>
-          <p class="card-desc">Some months feel busy. Other months feel unpredictable. You need a strategy that supports steadier opportunity flow.</p>
+          <h3 class="card-title">Are your leads inconsistent?</h3>
+          <p class="card-desc">Some months feel busy and others feel unpredictable — without a strategy that supports steadier opportunity flow.</p>
         </article>
         <article class="card-5">
-          <span class="card-num">02</span>
-          <h3 class="card-title">Your Website Is Not Pulling Its Weight</h3>
-          <p class="card-desc">A roofing website should build trust, explain your services, support local visibility, and help turn visitors into leads.</p>
+          <h3 class="card-title">Is your website pulling its weight?</h3>
+          <p class="card-desc">It should build trust, explain your services, support local visibility, and help turn visitors into leads.</p>
         </article>
         <article class="card-5">
-          <span class="card-num">03</span>
-          <h3 class="card-title">Your Marketing Feels Disconnected</h3>
-          <p class="card-desc">SEO, ads, social, email, video, and sales follow-up should work together. If they do not, your team ends up guessing.</p>
+          <h3 class="card-title">Does your marketing feel disconnected?</h3>
+          <p class="card-desc">SEO, ads, social, email, video, and sales follow-up should work together. When they don't, your team ends up guessing.</p>
         </article>
         <article class="card-5">
-          <span class="card-num">04</span>
-          <h3 class="card-title">Your Sales Team Needs Better Leads</h3>
-          <p class="card-desc">More leads are not always better. Roofing companies need the right leads, clearer messaging, and a stronger handoff.</p>
+          <h3 class="card-title">Does your sales team need better leads?</h3>
+          <p class="card-desc">More leads aren't always better. You need the right leads, clearer messaging, and a stronger handoff.</p>
         </article>
         <article class="card-5">
-          <span class="card-num">05</span>
-          <h3 class="card-title">Competitors Are Showing Up Stronger</h3>
-          <p class="card-desc">If competitors look more credible, rank more clearly, or tell a better story, you may lose opportunities before a call ever happens.</p>
+          <h3 class="card-title">Are competitors showing up stronger?</h3>
+          <p class="card-desc">If they look more credible, rank more clearly, or tell a better story, you may lose opportunities before a call ever happens.</p>
         </article>
       </div>
 
@@ -2551,12 +2858,13 @@ section[data-section] { padding: var(--space-16) 0; }
        SECTION ID: content-img-right-01 (Style Variant: Light)
        Purpose: Strategy-First Differentiator
        ============================================================ -->
-  <section class="content-img reverse" data-section="content-img-right-01" aria-labelledby="strategy-heading">
+  <section class="content-img reverse split-strategy" data-section="content-img-right-01" aria-labelledby="strategy-heading">
     <div class="container content-img-inner">
       <div class="copy reveal">
         <span class="eyebrow">Strategy First</span>
-        <h2 id="strategy-heading">Before You Spend More On Marketing, Know What You're Building Toward</h2>
-        <p>A roofing company may come to us asking for SEO, Google Ads, a new website, or better video. Those can all be valuable, but tactics work best when they are tied to a clear strategy.</p>
+        <h2 id="strategy-heading">Work With a Strategy-First Marketing Agency</h2>
+        <p style="font-size: var(--text-lg); font-weight: var(--weight-semibold); color: var(--color-charcoal-navy); margin-bottom: var(--space-5);">Before you spend more on marketing, know what you're building toward.</p>
+        <p>Most agencies lead with tactics. Splash helps you understand what your marketing needs to accomplish first — then connects the right website, content, campaigns, reporting, and support around that direction.</p>
         <p>Before adding another campaign, tool, or vendor, your leadership team needs to know:</p>
         <ul>
           <li>Where growth should come from</li>
@@ -2568,7 +2876,7 @@ section[data-section] { padding: var(--space-16) 0; }
           <li>What needs to be measured and improved</li>
         </ul>
         <div class="callout">Strategy first does not mean slow. It means your marketing dollars, content, website, ads, and video all work toward the same goal.</div>
-        <a href="strategy.html" class="btn btn-primary">Explore Roofing Strategy</a>
+        <a href="strategy.html" class="btn btn-primary">Learn About Our Approach</a>
       </div>
 
       <!-- Strategic checklist / planning visual — designed UI asset, no external dependency.
@@ -2602,6 +2910,12 @@ section[data-section] { padding: var(--space-16) 0; }
         <h2 id="framework-heading">A Clearer Path From Marketing Confusion To Growth</h2>
         <p class="intro">You do not need a pile of disconnected tactics. You need a plan your team can understand, execute, measure, and improve.</p>
       </div>
+
+      <!-- Scroll-drawn connector line: 01 → 04, then into the CTA button -->
+      <svg class="fw-line-svg" id="fwLineSvg" aria-hidden="true" focusable="false">
+        <path id="fwLinePath" d=""/>
+        <path id="fwLineArrow" class="fw-line-arrow" d=""/>
+      </svg>
 
       <div class="stacked-cards reveal">
         <article class="stacked-card">
@@ -2651,77 +2965,81 @@ section[data-section] { padding: var(--space-16) 0; }
          with an explicit asymmetric layout that breaks the page's grid rhythm. -->
     <div class="container">
       <div class="section-header reveal">
-        <span class="eyebrow">Service Pathways</span>
-        <h2 id="services-heading">Marketing Support Built Around How Roofing Companies Grow</h2>
-        <p class="intro">Roofing marketing is not one thing. It is the connection between strategy, visibility, trust, follow-up, and sales.</p>
+        <span class="eyebrow">Marketing Services</span>
+        <h2 id="services-heading">See How Our Marketing Services Work Together</h2>
+        <p class="intro">Roofing marketing is not one thing. It is the connection between strategy, visibility, trust, follow-up, and sales — built to work as one system.</p>
       </div>
 
-      <div class="pathways-layout reveal">
-        <!-- FEATURED: Strategy card — full-height left column -->
-        <article class="pathway-featured">
-          <!-- {NEEDS: Splash strategy session photography — strategist with roofing business owner} -->
-          <div class="pf-media" role="img" aria-label="Strategy consultation visual placeholder">
-            <span class="pf-tag">Featured Pathway</span>
-            <span class="pf-meta">{NEEDS: Splash strategy session photography}</span>
-          </div>
-          <div class="pf-body">
-            <span class="card-icon" aria-hidden="true">
+      <div class="svc-flow" id="svcFlow">
+        <!-- Scroll-drawn connector that snakes between the service cards -->
+        <svg class="svc-line-svg" id="svcLineSvg" aria-hidden="true" focusable="false">
+          <path id="svcLinePath" d=""/>
+        </svg>
+
+        <div class="svc-step svc-left reveal">
+          <article class="pathway-card">
+            <span class="pc-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 9l10 7 10-7-10-7z"/><path d="M2 15l10 7 10-7"/></svg>
             </span>
-            <h3 class="pf-title">Roofing Strategy</h3>
-            <p class="pf-desc">Clarify where your roofing company is going, what is holding marketing back, and which moves should come next. Strategy comes first so every dollar after it has a job to do.</p>
-            <ul class="pf-bullets">
-              <li>One-Day Marketing Strategy session</li>
-              <li>Audience, service mix, and channel priorities</li>
-              <li>Sales-to-marketing alignment</li>
-            </ul>
-            <div class="pf-ctas">
-              <a href="strategy.html" class="btn btn-primary">Explore Strategy</a>
-              <a href="one-day-marketing-strategy.html" class="link-arrow">One-Day Strategy <span class="arrow">→</span></a>
-            </div>
-          </div>
-        </article>
+            <h3 class="pc-title">Marketing Strategy</h3>
+            <p class="pc-desc">Clarify your audience, message, priorities, and growth roadmap.</p>
+            <a href="strategy.html" class="link-arrow pc-link">Explore Strategy <span class="arrow">→</span></a>
+          </article>
+        </div>
 
-        <!-- SUPPORTING: 4 cards in a 2x2 grid -->
-        <div class="pathway-support">
+        <div class="svc-step svc-right reveal">
           <article class="pathway-card">
-            <!-- {NEEDS: marketing analytics dashboard or campaign planning visual} -->
+            <span class="pc-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18"/><circle cx="6.5" cy="6.5" r="0.5" fill="currentColor"/><circle cx="8.5" cy="6.5" r="0.5" fill="currentColor"/></svg>
+            </span>
+            <h3 class="pc-title">Website Design &amp; Development</h3>
+            <p class="pc-desc">Build a site that supports trust, search, conversion, and service-line clarity.</p>
+            <a href="websites.html" class="link-arrow pc-link">View Website Services <span class="arrow">→</span></a>
+          </article>
+        </div>
+
+        <div class="svc-step svc-left reveal">
+          <article class="pathway-card">
             <span class="pc-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3-9 4 18 3-9h4"/></svg>
             </span>
             <h3 class="pc-title">Digital Marketing</h3>
-            <p class="pc-desc">SEO, LSAs, Google Ads, email, and social media — connected to your strategy.</p>
-            <a href="digital-marketing.html" class="link-arrow pc-link">View Digital Marketing <span class="arrow">→</span></a>
+            <p class="pc-desc">Connect SEO, Google Ads, LSAs, email, social, and reporting to the right growth goals.</p>
+            <a href="digital-marketing.html" class="link-arrow pc-link">Explore Digital Marketing <span class="arrow">→</span></a>
           </article>
+        </div>
 
+        <div class="svc-step svc-right reveal">
           <article class="pathway-card">
-            <!-- {NEEDS: roofing website mockup} -->
-            <span class="pc-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18"/><circle cx="6.5" cy="6.5" r="0.5" fill="currentColor"/><circle cx="8.5" cy="6.5" r="0.5" fill="currentColor"/></svg>
-            </span>
-            <h3 class="pc-title">Websites</h3>
-            <p class="pc-desc">Sites that reflect your company, support search, and turn visitors into conversations.</p>
-            <a href="websites.html" class="link-arrow pc-link">View Website Services <span class="arrow">→</span></a>
-          </article>
-
-          <article class="pathway-card">
-            <!-- {NEEDS: roofing jobsite b-roll thumbnail or drone roof footage still} -->
             <span class="pc-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
             </span>
-            <h3 class="pc-title">Video</h3>
-            <p class="pc-desc">Drone footage, project stories, testimonials, and brand videos that show your work.</p>
-            <a href="video.html" class="link-arrow pc-link">View Video Services <span class="arrow">→</span></a>
+            <h3 class="pc-title">Video, Photography &amp; Content</h3>
+            <p class="pc-desc">Show the people, projects, quality, and proof behind your company.</p>
+            <a href="video.html" class="link-arrow pc-link">Explore Content Services <span class="arrow">→</span></a>
           </article>
+        </div>
 
+        <!-- {NEEDS: dedicated CRM / follow-up / reporting page — linked to strategy call for now} -->
+        <div class="svc-step svc-left reveal">
           <article class="pathway-card">
-            <!-- {NEEDS: results/reporting visual — dashboard, KPI card, or proof preview} -->
             <span class="pc-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><rect x="7" y="11" width="3" height="6"/><rect x="12" y="7" width="3" height="10"/><rect x="17" y="13" width="3" height="4"/></svg>
             </span>
-            <h3 class="pc-title">Results</h3>
-            <p class="pc-desc">Roofing-specific work, success stories, and examples of strategic marketing in motion.</p>
-            <a href="results.html" class="link-arrow pc-link">See Roofing Results <span class="arrow">→</span></a>
+            <h3 class="pc-title">CRM, Follow-Up &amp; Reporting</h3>
+            <p class="pc-desc">Improve lead tracking, sales handoff, campaign visibility, and decision-making.</p>
+            <a href="schedule-strategy-call.html" class="link-arrow pc-link">Improve Follow-Up <span class="arrow">→</span></a>
+          </article>
+        </div>
+
+        <div class="svc-step svc-center reveal">
+          <article class="pathway-card svc-finale">
+            <span class="pc-icon svc-finale-ic" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg>
+            </span>
+            <h3 class="pc-title">It All Works Better Together</h3>
+            <p class="pc-desc">Strategy, website, content, digital marketing, and reporting — connected into one plan built around how your roofing company grows.</p>
+            <a href="schedule-strategy-call.html" class="btn btn-cta">Schedule A Strategy Call</a>
           </article>
         </div>
       </div>
@@ -2735,8 +3053,8 @@ section[data-section] { padding: var(--space-16) 0; }
     <div class="container">
       <div class="section-header on-dark reveal">
         <span class="eyebrow on-dark">Digital Marketing</span>
-        <h2 id="digital-heading">Get Found Where Roofing Customers Are Looking</h2>
-        <p class="intro">Roofing prospects start with a need — a repair, a replacement, a storm question. Your marketing should help the right people find you, trust you, and act.</p>
+        <h2 id="digital-heading">Digital Marketing for Roofers</h2>
+        <p class="intro">Get found where roofing customers are looking. Roofing prospects start with a need — a repair, a replacement, a storm question. Your marketing should help the right people find you, trust you, and act.</p>
       </div>
 
       <div class="dm-rows reveal">
@@ -2765,7 +3083,7 @@ section[data-section] { padding: var(--space-16) 0; }
           <span class="dm-arrow" aria-hidden="true">→</span>
         </a>
         <a class="dm-row" href="email-marketing.html">
-          <span class="dm-num" aria-hidden="true">EM</span>
+          <span class="dm-num dm-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg></span>
           <span class="dm-body">
             <span class="dm-title">Email Marketing</span>
             <span class="dm-desc">Stay in touch with prospects, past customers, and open opportunities.</span>
@@ -2773,10 +3091,19 @@ section[data-section] { padding: var(--space-16) 0; }
           <span class="dm-arrow" aria-hidden="true">→</span>
         </a>
         <a class="dm-row" href="social-media-marketing.html">
-          <span class="dm-num" aria-hidden="true">SM</span>
+          <span class="dm-num dm-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
           <span class="dm-body">
             <span class="dm-title">Social Media Marketing</span>
             <span class="dm-desc">Work, people, projects, and community presence that make you memorable.</span>
+          </span>
+          <span class="dm-arrow" aria-hidden="true">→</span>
+        </a>
+        <!-- {NEEDS: dedicated Google Business Profile page — linked to digital-marketing.html hub for now} -->
+        <a class="dm-row" href="digital-marketing.html">
+          <span class="dm-num dm-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></span>
+          <span class="dm-body">
+            <span class="dm-title">Google Business Profile</span>
+            <span class="dm-desc">Google Reviews, Maps, and local listings that help you show up and earn trust nearby.</span>
           </span>
           <span class="dm-arrow" aria-hidden="true">→</span>
         </a>
@@ -2784,6 +3111,58 @@ section[data-section] { padding: var(--space-16) 0; }
 
       <div class="section-end-cta reveal">
         <a href="digital-marketing.html" class="btn btn-outline">View All Digital Marketing Services</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION: Roofing Business Types (audience fit)
+       Reference layout example: https://rynoss.com/industries/roofing/
+       ============================================================ -->
+  <section class="audience-section" data-section="audience-01" aria-labelledby="audience-heading">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="eyebrow">Who We Work With</span>
+        <h2 id="audience-heading">Find Marketing Built for Your Type of Roofing Business</h2>
+        <p class="intro">Different roofing companies sell to different buyers, on different timelines. We tailor strategy and execution to your model.</p>
+      </div>
+
+      <div class="service-cards-grid reveal">
+        <article class="pathway-card">
+          <img class="pc-img" src="assets/AdobeStock_386089638-web.jpg" alt="Aerial view of a residential neighborhood with shingled rooftops">
+          <span class="pc-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 10 9-7 9 7"/><path d="M5 9v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V9"/></svg>
+          </span>
+          <h3 class="pc-title">Residential Roofing Companies</h3>
+          <p class="pc-desc">Build local trust, strengthen reputation, and help homeowners choose with confidence.</p>
+        </article>
+
+        <article class="pathway-card">
+          <img class="pc-img" src="assets/AdobeStock_1394039728-web.jpg" alt="Aerial view of a commercial building with a large flat roof">
+          <span class="pc-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="1"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01M12 6h.01M16 6h.01M8 10h.01M12 10h.01M16 10h.01"/></svg>
+          </span>
+          <h3 class="pc-title">Commercial Roofing Companies</h3>
+          <p class="pc-desc">Support long sales cycles, technical credibility, and relationship-driven opportunities.</p>
+        </article>
+
+        <article class="pathway-card">
+          <img class="pc-img" src="assets/AdobeStock_1907263746-web.jpg" alt="Aerial view of a growing neighborhood with a mix of finished and new-construction homes">
+          <span class="pc-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><rect x="3" y="9" width="7" height="12"/><rect x="13" y="4" width="8" height="17"/></svg>
+          </span>
+          <h3 class="pc-title">Mixed Residential + Commercial Companies</h3>
+          <p class="pc-desc">Create clearer paths for different buyers, services, and sales cycles.</p>
+        </article>
+
+        <article class="pathway-card">
+          <img class="pc-img" src="assets/AdobeStock_1612156106-web.jpg" alt="Wide aerial view of a suburban area spanning multiple streets and rooftops">
+          <span class="pc-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18 3 21V6l6-3 6 3 6-3v15l-6 3-6-3Z"/><path d="M9 3v15"/><path d="M15 6v15"/></svg>
+          </span>
+          <h3 class="pc-title">Multi-Location Growth</h3>
+          <p class="pc-desc">Create more consistent messaging, reporting, and execution across markets.</p>
+        </article>
       </div>
     </div>
   </section>
@@ -2821,14 +3200,8 @@ section[data-section] { padding: var(--space-16) 0; }
 
         <!-- Hero proof element: testimonial video (left, larger) -->
         <div class="proof-video">
-          <!-- {NEEDS: roofing client testimonial video} -->
-          <div class="video-frame" role="img" aria-label="Roofing client testimonial video placeholder">
-            <button class="video-play-btn" type="button" aria-label="Play roofing client testimonial video">
-              <span class="vp-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><polygon points="8 5 19 12 8 19 8 5"/></svg>
-              </span>
-            </button>
-            <span class="video-caption">{NEEDS: roofing client testimonial video}</span>
+          <div class="video-frame has-embed">
+            <iframe src="https://www.youtube.com/embed/9cDIZQROFdM" title="Roofing client testimonial video" loading="lazy" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
           </div>
         </div>
 
@@ -2931,23 +3304,39 @@ section[data-section] { padding: var(--space-16) 0; }
           </li>
         </ul>
 
-        <!-- Stronger scorecard mockup -->
+        <!-- Animated "live" scorecard preview -->
         <!-- {NEEDS: Roofing Marketing Scorecard mockup} -->
-        <div class="scorecard-preview" aria-hidden="true">
-          <div class="sp-header">
-            <span class="sp-tag">Preview</span>
-            <span class="sp-title">Roofing Marketing Scorecard</span>
+        <div class="score-card" id="scoreCard" aria-hidden="true">
+          <div class="sc-head">
+            <span class="sc-tag">Preview</span>
+            <span class="sc-title">Roofing Marketing Scorecard</span>
           </div>
-          <ul class="sp-list">
-            <li><span class="sp-check"></span><span class="sp-text">Website &amp; conversion path</span><span class="sp-marker" aria-hidden="true"></span></li>
-            <li><span class="sp-check"></span><span class="sp-text">Local visibility &amp; SEO</span><span class="sp-marker" aria-hidden="true"></span></li>
-            <li><span class="sp-check"></span><span class="sp-text">Paid media &amp; LSAs</span><span class="sp-marker" aria-hidden="true"></span></li>
-            <li><span class="sp-check"></span><span class="sp-text">Sales follow-up alignment</span><span class="sp-marker" aria-hidden="true"></span></li>
-            <li><span class="sp-check"></span><span class="sp-text">Reporting &amp; measurement</span><span class="sp-marker" aria-hidden="true"></span></li>
-          </ul>
-          <div class="sp-footer">
-            <span class="sp-footer-meta">5 sections · 25 questions · 10–15 min</span>
-            <span class="sp-footer-format">PDF</span>
+          <div class="sc-body">
+            <div class="sc-gauge">
+              <svg viewBox="0 0 120 120">
+                <defs>
+                  <linearGradient id="scGrad" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#00b0e0"/>
+                    <stop offset="100%" stop-color="#33d9ff"/>
+                  </linearGradient>
+                </defs>
+                <circle class="sc-ring-track" cx="60" cy="60" r="52"/>
+                <circle class="sc-ring-fill" cx="60" cy="60" r="52"/>
+              </svg>
+              <div class="sc-gauge-num"><span id="scoreNum">0</span><span class="sc-gauge-den">/100</span></div>
+              <span class="sc-gauge-lbl">Sample score</span>
+            </div>
+            <ul class="sc-bars">
+              <li><span class="sc-bar-lbl">Website &amp; conversion</span><span class="sc-bar"><span class="sc-bar-fill" style="--v:74%"></span></span></li>
+              <li><span class="sc-bar-lbl">Local visibility &amp; SEO</span><span class="sc-bar"><span class="sc-bar-fill" style="--v:58%"></span></span></li>
+              <li><span class="sc-bar-lbl">Paid media &amp; LSAs</span><span class="sc-bar"><span class="sc-bar-fill" style="--v:81%"></span></span></li>
+              <li><span class="sc-bar-lbl">Sales follow-up</span><span class="sc-bar"><span class="sc-bar-fill" style="--v:46%"></span></span></li>
+              <li><span class="sc-bar-lbl">Reporting</span><span class="sc-bar"><span class="sc-bar-fill" style="--v:63%"></span></span></li>
+            </ul>
+          </div>
+          <div class="sc-foot">
+            <span>5 sections · 25 questions · 10–15 min</span>
+            <span class="sc-foot-fmt">PDF</span>
           </div>
         </div>
 
@@ -3010,14 +3399,10 @@ section[data-section] { padding: var(--space-16) 0; }
         <a href="strategy.html" class="btn btn-primary">Learn How Strategy Works</a>
       </div>
 
-      <!-- About visual: composition card (no external image dependency).
-           {NEEDS: in production, swap for licensed stock image — preferred:
-           "Splash team in workshop / strategy team collaborating / professional
-           but approachable consulting scene." Avoid generic agency stock or
-           anything that looks like an "About the roofing company" section.
-           If real Splash team photography exists, use that instead.} -->
-      <!-- {NEEDS: Splash team photo, strategy session image, or approved roofing-related brand visual} -->
-      <div class="about-visual reveal" aria-hidden="true">
+      <!-- About visual: team photo with brand stat/tags overlaid.
+           Swap for real Splash team photography when available. -->
+      <div class="about-visual has-img reveal">
+        <img class="av-img" src="assets/AdobeStock_1641458003-web.jpg" alt="The Splash Omnimedia marketing team collaborating during a strategy session">
         <span class="av-eyebrow">Splash Omnimedia · Since 2007</span>
         <div class="av-stat">
           <div class="num">10+</div>
@@ -3214,37 +3599,35 @@ section[data-section] { padding: var(--space-16) 0; }
           </g>
         </svg>
         <p>Strategy-first marketing for growth-minded roofing companies. Strategy, web, SEO, paid media, video, email, social, and reporting — connected.</p>
-        <a href="schedule-strategy-call.html" class="footer-cta">Schedule A Strategy Call →</a>
+        <div class="footer-actions">
+          <a href="schedule-strategy-call.html" class="btn btn-cta">Schedule A Strategy Call</a>
+          <a href="https://splashomnimedia.com" class="footer-cta">Visit Our Main Site →</a>
+        </div>
       </div>
 
       <div class="footer-col">
-        <h4>Strategy</h4>
+        <h4><a href="strategy.html">Strategy</a></h4>
         <ul>
-          <li><a href="strategy.html">Roofing Strategy</a></li>
           <li><a href="one-day-marketing-strategy.html">One-Day Marketing Strategy</a></li>
-          <li><a href="results.html">Roofing Results</a></li>
-          <li><a href="resources.html#scorecard-download">Resources</a></li>
         </ul>
+        <h4 class="footer-col-next"><a href="websites.html">Websites</a></h4>
+        <h4 class="footer-col-next"><a href="video.html">Video</a></h4>
       </div>
 
       <div class="footer-col">
-        <h4>Digital Marketing</h4>
+        <h4><a href="digital-marketing.html">Digital Marketing</a></h4>
         <ul>
-          <li><a href="search-engine-optimization.html">SEO</a></li>
-          <li><a href="google-local-service-ads.html">Local Service Ads</a></li>
+          <li><a href="search-engine-optimization.html">Search Engine Optimization</a></li>
+          <li><a href="google-local-service-ads.html">Google Local Service Ads</a></li>
           <li><a href="google-ads-ppc.html">Google Ads (PPC)</a></li>
           <li><a href="email-marketing.html">Email Marketing</a></li>
-          <li><a href="social-media-marketing.html">Social Media</a></li>
+          <li><a href="social-media-marketing.html">Social Media Marketing</a></li>
         </ul>
       </div>
 
       <div class="footer-col">
-        <h4>Other Services</h4>
-        <ul>
-          <li><a href="websites.html">Websites</a></li>
-          <li><a href="video.html">Video</a></li>
-          <li><a href="digital-marketing.html">All Digital Marketing</a></li>
-        </ul>
+        <h4><a href="results.html">Results</a></h4>
+        <h4 class="footer-col-next"><a href="resources.html#scorecard-download">Resources</a></h4>
       </div>
     </div>
 
@@ -3268,6 +3651,217 @@ section[data-section] { padding: var(--space-16) 0; }
 </div>
 
 <script>
+/* ============================================================
+   Framework section: scroll-drawn connector line (01 → 04 → CTA)
+   ============================================================ */
+(function(){
+  var svg = document.getElementById('fwLineSvg');
+  var path = document.getElementById('fwLinePath');
+  var arrow = document.getElementById('fwLineArrow');
+  if (!svg || !path) return;
+  var cont = svg.parentElement;
+  var len = 0;
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function build(){
+    var cRect = cont.getBoundingClientRect();
+    svg.setAttribute('width', cRect.width);
+    svg.setAttribute('height', cRect.height);
+    svg.setAttribute('viewBox', '0 0 ' + cRect.width + ' ' + cRect.height);
+    var nums = cont.querySelectorAll('.stacked-card .number');
+    var btn = cont.querySelector('.section-end-cta .btn');
+    if (!nums.length || !btn) return;
+    var first = nums[0].getBoundingClientRect();
+    var b = btn.getBoundingClientRect();
+    var x = first.left + first.width / 2 - cRect.left;
+    var y0 = first.top + first.height / 2 - cRect.top;
+    var yBtn = b.top + b.height / 2 - cRect.top;
+    var xBtn = b.left - cRect.left - 14;
+    var r = 18;
+    var d;
+    if (xBtn > x + r) {
+      d = 'M ' + x + ' ' + y0 +
+          ' L ' + x + ' ' + (yBtn - r) +
+          ' Q ' + x + ' ' + yBtn + ' ' + (x + r) + ' ' + yBtn +
+          ' L ' + xBtn + ' ' + yBtn;
+      if (arrow) {
+        /* Chevron pointing right, into the button */
+        arrow.setAttribute('d',
+          'M ' + (xBtn - 10) + ' ' + (yBtn - 7) +
+          ' L ' + (xBtn + 2) + ' ' + yBtn +
+          ' L ' + (xBtn - 10) + ' ' + (yBtn + 7));
+      }
+    } else {
+      /* Narrow layouts: straight line down to just above the button */
+      var yEnd = b.top - cRect.top - 10;
+      d = 'M ' + x + ' ' + y0 + ' L ' + x + ' ' + yEnd;
+      if (arrow) {
+        /* Chevron pointing down, toward the button */
+        arrow.setAttribute('d',
+          'M ' + (x - 7) + ' ' + (yEnd - 10) +
+          ' L ' + x + ' ' + (yEnd + 2) +
+          ' L ' + (x + 7) + ' ' + (yEnd - 10));
+      }
+    }
+    path.setAttribute('d', d);
+    len = path.getTotalLength();
+    path.style.strokeDasharray = len;
+    update();
+  }
+
+  function update(){
+    if (!len) return;
+    if (reduced) {
+      path.style.strokeDashoffset = 0;
+      if (arrow) arrow.classList.add('is-visible');
+      return;
+    }
+    var cRect = cont.getBoundingClientRect();
+    var vh = window.innerHeight || document.documentElement.clientHeight;
+    var progress = ((vh * 0.78) - cRect.top) / cRect.height;
+    progress = Math.max(0, Math.min(1, progress));
+    path.style.strokeDashoffset = len * (1 - progress);
+    if (arrow) arrow.classList.toggle('is-visible', progress >= 0.97);
+  }
+
+  var rT;
+  window.addEventListener('scroll', function(){ window.requestAnimationFrame(update); }, { passive: true });
+  window.addEventListener('resize', function(){ clearTimeout(rT); rT = setTimeout(build, 150); });
+  window.addEventListener('load', build);
+  build();
+})();
+
+/* ============================================================
+   Live scorecard: animate gauge + bars + count-up when in view
+   ============================================================ */
+(function(){
+  var card = document.getElementById('scoreCard');
+  if (!card) return;
+  var numEl = document.getElementById('scoreNum');
+  var target = 68;
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function run(){
+    card.classList.add('is-animated');
+    if (!numEl) return;
+    if (reduced) { numEl.textContent = target; return; }
+    var start = null, dur = 1500;
+    function step(ts){
+      if (!start) start = ts;
+      var p = Math.min((ts - start) / dur, 1);
+      var eased = 1 - Math.pow(1 - p, 3);
+      numEl.textContent = Math.round(eased * target);
+      if (p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  if (!('IntersectionObserver' in window)) { run(); return; }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (e.isIntersecting) { run(); io.disconnect(); }
+    });
+  }, { threshold: 0.4 });
+  io.observe(card);
+})();
+
+/* ============================================================
+   Services flow: scroll-drawn connector snaking between cards
+   ============================================================ */
+(function(){
+  var svg = document.getElementById('svcLineSvg');
+  var path = document.getElementById('svcLinePath');
+  var cont = document.getElementById('svcFlow');
+  if (!svg || !path || !cont) return;
+  var len = 0;
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function build(){
+    if (window.getComputedStyle(svg).display === 'none') { len = 0; return; }
+    var cRect = cont.getBoundingClientRect();
+    svg.setAttribute('width', cRect.width);
+    svg.setAttribute('height', cRect.height);
+    svg.setAttribute('viewBox', '0 0 ' + cRect.width + ' ' + cRect.height);
+    var cards = Array.prototype.slice.call(cont.querySelectorAll('.svc-step .pathway-card'));
+    if (cards.length < 2) return;
+    /* Offset-based measurement: immune to the reveal animation's transform */
+    var pts = cards.map(function(c){
+      var step = c.parentElement;
+      var left = step.offsetLeft + c.offsetLeft;
+      var top = step.offsetTop + c.offsetTop;
+      return {
+        x: left + c.offsetWidth / 2,
+        top: top,
+        bottom: top + c.offsetHeight
+      };
+    });
+    /* Start at the bottom of card 1; S-curve to the top of the next card;
+       pass (hidden) behind each card; repeat. Ends entering the last card. */
+    var d = 'M ' + pts[0].x + ' ' + pts[0].bottom;
+    for (var i = 1; i < pts.length; i++) {
+      var prev = pts[i - 1], cur = pts[i];
+      var dy = (cur.top - prev.bottom) * 0.6;
+      d += ' C ' + prev.x + ' ' + (prev.bottom + dy) +
+           ' ' + cur.x + ' ' + (cur.top - dy) +
+           ' ' + cur.x + ' ' + cur.top;
+      if (i < pts.length - 1) {
+        d += ' L ' + cur.x + ' ' + cur.bottom;
+      }
+    }
+    path.setAttribute('d', d);
+    len = path.getTotalLength();
+    path.style.strokeDasharray = len;
+    update();
+  }
+
+  function update(){
+    if (!len) return;
+    if (reduced) { path.style.strokeDashoffset = 0; return; }
+    var cRect = cont.getBoundingClientRect();
+    var vh = window.innerHeight || document.documentElement.clientHeight;
+    var progress = ((vh * 0.78) - cRect.top) / cRect.height;
+    progress = Math.max(0, Math.min(1, progress));
+    path.style.strokeDashoffset = len * (1 - progress);
+  }
+
+  var rT;
+  window.addEventListener('scroll', function(){ window.requestAnimationFrame(update); }, { passive: true });
+  window.addEventListener('resize', function(){ clearTimeout(rT); rT = setTimeout(build, 150); });
+  window.addEventListener('load', build);
+  build();
+})();
+
+/* ============================================================
+   Interactive path selector (journey section)
+   ============================================================ */
+(function(){
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('.path-tab'));
+  var panels = Array.prototype.slice.call(document.querySelectorAll('.path-panel'));
+  if (!tabs.length) return;
+  function activate(target){
+    tabs.forEach(function(t){
+      var on = t.getAttribute('data-target') === target;
+      t.classList.toggle('is-active', on);
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+    });
+    panels.forEach(function(p){
+      var on = p.id === 'path-panel-' + target;
+      p.classList.toggle('is-active', on);
+      if (on) { p.removeAttribute('hidden'); } else { p.setAttribute('hidden', ''); }
+    });
+  }
+  tabs.forEach(function(t, i){
+    t.addEventListener('click', function(){ activate(t.getAttribute('data-target')); });
+    t.addEventListener('keydown', function(e){
+      var idx;
+      if (e.key === 'ArrowDown' || e.key === 'ArrowRight') { idx = (i + 1) % tabs.length; }
+      else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') { idx = (i - 1 + tabs.length) % tabs.length; }
+      else { return; }
+      e.preventDefault();
+      tabs[idx].focus();
+      activate(tabs[idx].getAttribute('data-target'));
+    });
+  });
+})();
+
 /* ============================================================
    Header scroll shift (>80px → add shadow)
    ============================================================ */
